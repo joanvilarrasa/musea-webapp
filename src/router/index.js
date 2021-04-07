@@ -5,7 +5,8 @@ import AuthStore from '../store-cold/auth/index'
 
 // Routes
 import Home from '../views/Home.vue'
-
+import Usuaris from '../views/Usuaris.vue'
+import Obres from '../views/Obres.vue'
 Vue.use(VueRouter)
 
 const ifAuthenticated = (to, from, next) => {
@@ -23,6 +24,18 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+    //beforeEnter: ifAuthenticated,
+  },
+  {
+    path: '/usuaris',
+    name: 'Usuaris',
+    component: Usuaris,
+    //beforeEnter: ifAuthenticated,
+  },
+  {
+    path: '/obres',
+    name: 'Obres',
+    component: Obres,
     //beforeEnter: ifAuthenticated,
   },
   {
