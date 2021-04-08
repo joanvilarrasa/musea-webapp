@@ -4,9 +4,10 @@ import AuthStore from '../store-cold/auth/index'
 
 
 // Routes
+import Museums from '../views/Museums.vue'
 import Home from '../views/Home.vue'
 import Usuaris from '../views/Usuaris.vue'
-import Obres from '../views/Obres.vue'
+import Login from '../views/Login/Login.vue'
 Vue.use(VueRouter)
 
 const ifAuthenticated = (to, from, next) => {
@@ -33,9 +34,9 @@ const routes = [
     //beforeEnter: ifAuthenticated,
   },
   {
-    path: '/obres',
-    name: 'Obres',
-    component: Obres,
+    path: '/museums',
+    name: 'Museums',
+    component: Museums,
     //beforeEnter: ifAuthenticated,
   },
   {
@@ -46,6 +47,11 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
     beforeEnter: ifAuthenticated,
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
   }
 ]
 

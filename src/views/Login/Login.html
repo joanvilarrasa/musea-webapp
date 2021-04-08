@@ -1,0 +1,28 @@
+
+<div>
+  <v-form @submit.prevent="loginFunction">
+    <p class="ma-4 login-title">Login</p>
+    <v-text-field
+      class="mt-5 ml-5 mr-5 login-input rounded-1"
+      v-model="username"
+      label="Username"
+      type="text"
+      :rules="usernameRules"
+      outlined
+      autocomplete="off"
+      required
+    ></v-text-field>
+    <v-text-field
+      id="password"
+      class="ml-5 mr-5 login-input rounded-1"
+      v-model="password"
+      label="Password"
+      type="password"
+      :rules="passwordRules"
+      outlined
+      required
+    ></v-text-field>
+    <v-btn depressed class="login-btn rounded-1 mb-5" type="submit">Login</v-btn>
+  </v-form>
+</div>
+
