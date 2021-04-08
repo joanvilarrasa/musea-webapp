@@ -7,6 +7,7 @@ import AuthStore from '../store-cold/auth/index'
 import Museums from '../views/Museums.vue'
 import Home from '../views/Home.vue'
 import Usuaris from '../views/Usuaris.vue'
+import AddMuseum from '../views/AddMuseum.vue'
 import Login from '../views/Login/Login.vue'
 Vue.use(VueRouter)
 
@@ -37,6 +38,12 @@ const routes = [
     path: '/museums',
     name: 'Museums',
     component: Museums,
+    //beforeEnter: ifAuthenticated,
+  },
+  {
+    path: '/museums/add',
+    name: 'AddMuseum',
+    component: AddMuseum,
     //beforeEnter: ifAuthenticated,
   },
   {

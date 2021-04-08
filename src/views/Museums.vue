@@ -29,7 +29,14 @@
         </table>
     
     </v-simple-table>
+    <v-btn rounded
+      dark>
+        <router-link to="/museums/add">
+        Add Museum
+        </router-link>
+    </v-btn> 
     </v-app>
+    
   </div>
 </template>
 
