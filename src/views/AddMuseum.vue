@@ -64,7 +64,7 @@
 
 
 <script>
-//import { DataProvider } from "@/data-providers/_Index.js"
+import { DataProvider } from "@/data-providers/_Index.js"
 
 export default {
     name: "AddMuseum",
@@ -83,13 +83,12 @@ export default {
     },
     methods: {
         post: function(){
-            var json_form=JSON.stringify(this.form);
-            console.log(json_form)
-            //let params = 
-           /* DataProvider("MUSEUMS_CREATE", "MUSEUMS", params).then((res) => {
+            
+            let params = this.form;
+            DataProvider("MUSEUMS", "MUSEUMS_CREATE",  params).then((res) => {
                     this.status = res;
                     console.log(this.status)
-                })*/
+                })
         }
   }
     
