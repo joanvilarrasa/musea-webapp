@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import AuthStore from '../store-cold/auth/index'
-
+import AuthStore from '../store-cold/auth/index.js'
 
 // Routes
 import Museums from '../views/Museums.vue'
@@ -32,7 +31,7 @@ const routes = [
     path: '/usuaris',
     name: 'Usuaris',
     component: Usuaris,
-    //beforeEnter: ifAuthenticated,
+    beforeEnter: ifAuthenticated,
   },
   {
     path: '/museums',
@@ -53,7 +52,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-    beforeEnter: ifAuthenticated,
+    //beforeEnter: ifAuthenticated,
   },
   {
     path: '/login',

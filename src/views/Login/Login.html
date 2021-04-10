@@ -1,6 +1,6 @@
 
 <div>
-  <v-form @submit.prevent="loginFunction">
+  <v-form v-model="valid">
     <p class="ma-4 login-title">Login</p>
     <v-text-field
       class="mt-5 ml-5 mr-5 login-input rounded-1"
@@ -22,7 +22,9 @@
       outlined
       required
     ></v-text-field>
-    <v-btn depressed class="login-btn rounded-1 mb-5" type="submit">Login</v-btn>
+    <v-btn :disabled="!valid" color="success" class="mr-4" @click="loginFunction">
+      Login
+    </v-btn>
   </v-form>
 </div>
 

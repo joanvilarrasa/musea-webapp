@@ -2,7 +2,7 @@ import {AuthDataProvider} from './AuthDataProvider';
 import {MuseumsDataProvider} from './MuseumsDataProvider';
 //const urlAPIGateway = process.env.VUE_APP_API;
 
-const urlAPIAuth = "https://musea-config-server.herokuapp.com"
+const urlAPIAuth = "https://musea-authorization-server.herokuapp.com"
 const urlAPIMuseums = "https://musea-api.herokuapp.com"
 
 let data = null;
