@@ -29,12 +29,11 @@
         </table>
     
     </v-simple-table>
-    <v-btn rounded
-      dark>
+    <button class="submit">
         <router-link to="/museums/add">
         Add Museum
         </router-link>
-    </v-btn> 
+    </button>
     </v-app>
     
   </div>
@@ -68,3 +67,15 @@ export default {
 }
 
 </script>
+
+<style >
+.submit {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  float: left;
+}
+</style>
