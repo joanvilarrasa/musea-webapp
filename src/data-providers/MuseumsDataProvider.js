@@ -21,6 +21,41 @@ export const MuseumsDataProvider = (type,params,urlAPIMuseums) => {
                 params: params,
             }
             return axios(options2).then((res) => {return res.data});
+        case "EXPOSITIONS":
+            var uri3 = urlAPIMuseums + '/museums/'+params;
+            var options3 = {
+                method: 'GET',
+                url: uri3, 
+            }
+            return axios(options3).then((res) => {return res.data});
+        case "EXPO_CREATE":
+            var uri2 = urlAPIMuseums + '/museums/'+params[1];
+            var options2 = {
+                method: 'POST',
+                url: uri2,
+                params: params[0],
+            }
+            console.log(options2)
+            return axios(options2).then((res) => {return res.data});
+
+        case "OBRES":
+            var uri3 = urlAPIMuseums + '/museums/'+params[0]+'/'+params[1];
+            var options3 = {
+                method: 'GET',
+                url: uri3, 
+            }
+            return axios(options3).then((res) => {return res.data});
+
+        case "OBRA_CREATE":
+            
+            var uri2 = urlAPIMuseums + '/museums/'+params[1]+'/'+params[2];
+            var options2 = {
+                method: 'POST',
+                url: uri2,
+                params: params[0],
+            }
+            
+            return axios(options2).then((res) => {return res.data});
 
         default:
             console.log(params);
