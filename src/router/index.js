@@ -20,30 +20,32 @@ const ifAuthenticated = (to, from, next) => {
   return
 }
 
+const authenticate = true;
+
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: Home,
-    //beforeEnter: ifAuthenticated,
+    beforeEnter: authenticate ? ifAuthenticated : true,
   },
   {
     path: '/usuaris',
     name: 'Usuaris',
     component: Usuaris,
-    beforeEnter: ifAuthenticated,
+    beforeEnter: authenticate ? ifAuthenticated : true,
   },
   {
     path: '/museums',
     name: 'Museums',
     component: Museums,
-    //beforeEnter: ifAuthenticated,
+    beforeEnter: authenticate ? ifAuthenticated : true,
   },
   {
     path: '/museums/add',
     name: 'AddMuseum',
     component: AddMuseum,
-    //beforeEnter: ifAuthenticated,
+    beforeEnter: authenticate ? ifAuthenticated : true,
   },
   {
     path: '/about',

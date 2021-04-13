@@ -68,7 +68,7 @@ export default {
 
 </script>
 
-<style >
+<style scoped>
 .submit {
   background-color: #4CAF50;
   color: white;

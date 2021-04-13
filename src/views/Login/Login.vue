@@ -7,9 +7,9 @@ export default {
     name: 'Login',
     data: () => ({
       valid: false,
-      username: null,
+      email: null,
       password: null,
-      usernameRules: [
+      emailRules: [
         v => !!v || 'Username is required',
       ],
       passwordRules: [
@@ -19,7 +19,7 @@ export default {
     }),
     methods: {
       loginFunction() {
-        DataProvider("AUTH", "LOGIN", { username: this.username, password: this.password }).then((res) => {
+        DataProvider("AUTH", "LOGIN", { username: this.email, password: this.password }).then((res) => {
           this.$router.push('/');
         }).catch(error => {
           cosnole.log(error)

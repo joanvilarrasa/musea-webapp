@@ -1,14 +1,22 @@
 <template>
   <div id="app">
-    
-    
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/login">About</router-link> |
-      <router-link to="/usuaris">Usuaris</router-link> |
-      <router-link to="/museums">Museus</router-link> |
-      <router-link to="/obres">Obres</router-link>
-    </div>
+    <v-card v-if="loggedIn" class="overflow-hidden">
+      <v-app-bar
+        color="#6A76AB"
+        dark
+        dense
+      >
+        <v-toolbar-title>MUSEA ADMIN</v-toolbar-title>
+        <template v-slot:extension>
+          <v-tabs align-with-title>
+            <v-tab link to="/"><v-icon class="tab-menu-icon">mdi-home</v-icon>Home</v-tab>
+            <v-tab link to="/usuaris"><v-icon class="tab-menu-icon">mdi-account</v-icon>Users</v-tab>
+            <v-tab link to="/museums"><v-icon class="tab-menu-icon">mdi-bank</v-icon>Museums</v-tab>
+            <v-tab link to="/obres"><v-icon class="tab-menu-icon">mdi-palette</v-icon>Obres</v-tab>
+          </v-tabs>
+        </template>
+      </v-app-bar>
+    </v-card>
     <router-view/>
   </div>
 </template>
@@ -20,19 +28,21 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  overflow: hidden;
 }
-
-#nav {
-  padding: 30px;
-  text-align: center;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.tab-menu-icon {
+  margin-right: 0.5rem;
 }
 </style>
+
+<script>
+
+export default {
+  data: () => ({
+    drawer: false,
+    group: null,
+    loggedIn: false
+  }),
+}
+</script>
+
