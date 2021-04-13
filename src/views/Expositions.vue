@@ -8,19 +8,19 @@
         <table>
             <thead>
                 <tr>
-                    <th>Nom exposicio</th> |
-                    <th> Nombre d'obres </th> | 
+                    <th>Nom exposicio</th> 
+                    <th> Nombre d'obres </th> 
+                    <th> Sala </th> 
                     <th> Imatge </th> 
                 </tr>
             </thead>
             <tbody>
                  <tr v-for="expo in this.expositions" :key="expo.id">
-                    <td> <router-link :to="{ name: 'expositions', params: { id_museu: museum.id }}"> {{expo.name}} </router-link> </td>
-                    <td> Under Construction </td>
-                    <td><v-img lazy-src="https://picsum.photos/id/11/10/6" max-height="150" max-width="250" src="https://museaimages1.s3.amazonaws.com/vialactea.jfif"></v-img></td>
+                    <td> <router-link :to="{ name: 'obres', params: { id_exposition: expo._id }}"> {{expo.name}} </router-link> </td>
+                    <td> {{expo.works.length}} </td>
+                    <td> {{expo.room}} </td>
+                    <td><v-img lazy-src="" max-height="100" max-width="150" :src="expo.image"></v-img></td>
                 </tr>
-               
-                
             </tbody>  
         </table>
     
@@ -50,9 +50,9 @@ export default {
         obtenir_expos: function(id_museu){
             
             DataProvider("MUSEUMS", "EXPOSITIONS", id_museu).then((res) => {
-
-                this.expositions = res.expositions;
-                console.log(this.expositions)
+                console.log(res)
+                this.expositions = res.museum.expositions;
+                //console.log(this.expositions)
             })
 
         }
@@ -67,6 +67,19 @@ export default {
 </script>
 
 <style >
+table {
+   
+  width: 100%;
+
+  border: 1px solid white;
+}
+td {
+    width: 20%;
+}
+th {
+  border: 1px solid white;
+  height: 15px;
+}
 .submit {
   background-color: #4CAF50;
   color: white;

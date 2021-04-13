@@ -1,5 +1,5 @@
 <template>
-  <div class="Exposition">
+  <div class="Obres">
     <h1>Obres Page</h1>
     <v-app>
     <v-simple-table dark
@@ -8,17 +8,19 @@
         <table>
             <thead>
                 <tr>
-                    <th>Nom exposicio</th> |
-                    <th> Nombre d'obres </th> |
+                    <th>Nom Obres</th> 
+                    <th>Autor</th> 
+                    <th> Puntuació </th> 
                     <th> Imatge </th> 
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="obra in this.orbes" :key="obra.id">
+                <tr v-for="obra in this.obres" :key="obra.id">
                     <!--<router-link :to="{ name: 'obraInfo', params: { id_museu: museum.id }}"> </router-link>-->
-                    <td> {{obra.name}}  </td>
-                    <td> Under Construction </td>
-                    <td><v-img lazy-src="https://picsum.photos/id/11/10/6" max-height="150" max-width="250" src="https://museaimages1.s3.amazonaws.com/vialactea.jfif"></v-img></td>
+                    <td> {{obra.title}}  </td>
+                    <td> {{obra.author}} </td>
+                    <td> {{obra.score}} </td>
+                    <td><v-img lazy-src="" max-height="100" max-width="150" :src="obra.image"></v-img></td>
                 </tr>
             </tbody>  
         </table>
@@ -49,9 +51,9 @@ export default {
         obtenir_expos: function(id_museu, id_exposition){
             let ids = [id_museu , id_exposition]
             DataProvider("MUSEUMS", "OBRES", ids).then((res) => {
-
-                this.obres = res.works;
-                console.log(this.obres)
+                console.log(res)
+                this.obres = res.exposition.works;
+                
             })
 
         }
@@ -66,6 +68,19 @@ export default {
 </script>
 
 <style >
+table {
+   
+  width: 100%;
+
+  border: 1px solid white;
+}
+td {
+    width: 20%;
+}
+th {
+  border: 1px solid white;
+  height: 15px;
+}
 .submit {
   background-color: #4CAF50;
   color: white;

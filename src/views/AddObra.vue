@@ -4,16 +4,37 @@
     <form v-on:submit.prevent="post">
     <div class="row">
       <div class="col-25">
-        <label for="fname">Nom Obra:</label>
+        <label for="fname">Titiol:</label>
       </div>
       <div class="col-25">
-        <input type="text" id="name" name="name" placeholder="Museum Name.." v-model="form.name">
+        <input type="text" id="title" name="title" placeholder="Masterpice title.." v-model="form.title">
       </div>
     </div>
-    
-    
-   
     <div class="row">
+      <div class="col-25">
+        <label for="fname">Autor:</label>
+      </div>
+      <div class="col-25">
+        <input type="text" id="author" name="author" placeholder="Author Name.." v-model="form.author">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">Type:</label>
+      </div>
+      <div class="col-25">
+        <input type="text" id="type" name="type" placeholder="Type of the masterpiece..." v-model="form.type">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">Score:</label>
+      </div>
+      <div class="col-25">
+        <input type="text" id="score" name="score" placeholder="Type of the masterpiece..." v-model="form.score">
+      </div>
+    </div>
+ <div class="row">
       <div class="col-25">
         <label for="subject">Descripció Català:</label>
       </div>
@@ -62,8 +83,10 @@ export default {
     data() {
         return{
             form: {
-                name: '',
-               
+                title: '',
+               author: '',
+               type: '',
+               score: '',
                 ca: '',
                 es: '',
                 en: '',
@@ -75,12 +98,12 @@ export default {
     },
     methods: {
         post: function(){
-                      
+            this.form.score=parseFloat(this.form.score)         
             let params = [ this.form,
                             this.$route.params.id_museu, this.$route.params.id_exposition]
+            console.log(params)      
             DataProvider("MUSEUMS", "OBRA_CREATE",  params).then((res) => {
                     this.status = res;
-                    console.log(this.status)
                 })
         },
     }

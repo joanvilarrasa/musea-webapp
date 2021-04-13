@@ -7,34 +7,15 @@
         <label for="fname">Nom Expo:</label>
       </div>
       <div class="col-25">
-        <input type="text" id="name" name="name" placeholder="Museum Name.." v-model="form.name">
+        <input type="text" id="name" name="name" placeholder="Exposition Name.." v-model="form.name">
       </div>
-    </div>
-    
-    
-   
+    </div> 
     <div class="row">
       <div class="col-25">
-        <label for="subject">Descripció Català:</label>
+        <label for="subject">Room:</label>
       </div>
     <div class="col-25">
-        <textarea id="ca" name="ca" placeholder="Description in Catalan" style="height:70px" v-model="form.ca"></textarea>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="subject">Descripció Castellà:</label>
-      </div>
-    <div class="col-25">
-        <textarea id="es" name="es" placeholder="Description in Spanish" style="height:70px" v-model="form.es"></textarea>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="subject">Descripció Anglès:</label>
-      </div>
-    <div class="col-25">
-        <textarea id="en" name="en" placeholder="Description in English" style="height:70px" v-model="form.en"></textarea>
+        <input type="text" id="room" name="name" placeholder="Room of the exposition.." v-model="form.room">
       </div>
     </div>
     <div class="row">
@@ -62,11 +43,8 @@ export default {
     data() {
         return{
             form: {
-                name: '',
-               
-                ca: '',
-                es: '',
-                en: '',
+                name: '',              
+                room: '',
                 img: '',
             },
             status: [],

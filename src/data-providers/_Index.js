@@ -1,5 +1,6 @@
 import {AuthDataProvider} from './AuthDataProvider';
 import {MuseumsDataProvider} from './MuseumsDataProvider';
+import{UsersDataProvider} from './UsersDataProvider';
 //const urlAPIGateway = process.env.VUE_APP_API;
 
 const urlAPIAuth = "https://musea-authorization-server.herokuapp.com"
@@ -13,6 +14,10 @@ export const DataProvider = (providerType, type, params) => {
 
         case "MUSEUMS":
             data = MuseumsDataProvider(type,params,urlAPIMuseums);
+            break;
+        
+        case "USERS":
+            data = UsersDataProvider(type,params,urlAPIMuseums);
             break;
 
         case "AUTH":
