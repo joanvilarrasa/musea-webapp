@@ -1,6 +1,5 @@
 <template>
 <div id="form">
-    
     <form v-on:submit.prevent="post">
     <div class="row">
       <div class="col-25">
@@ -20,6 +19,30 @@
     </div>
     <div class="row">
       <div class="col-25">
+        <label for="subject">Descripció Català:</label>
+      </div>
+    <div class="col-25">
+        <textarea id="ca" name="ca" placeholder="Description in Catalan" style="height:70px" v-model="form.ca"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Descripció Castellà:</label>
+      </div>
+    <div class="col-25">
+        <textarea id="es" name="es" placeholder="Description in Spanish" style="height:70px" v-model="form.es"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Descripció Anglès:</label>
+      </div>
+    <div class="col-25">
+        <textarea id="en" name="en" placeholder="Description in English" style="height:70px" v-model="form.en"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
         <label for="subject">Foto:</label>
       </div>
     <div class="col-25">
@@ -29,7 +52,7 @@
     <button class="submit">Crear Expo</button>
   </form><br><br>
   <div v-if="this.status.name != undefined">
-    Expo creat correctament
+    Exposició creada correctament
   </div>
 </div>
 </template>
@@ -45,6 +68,9 @@ export default {
             form: {
                 name: '',              
                 room: '',
+                ca:'',
+                es: '',
+                en: '',
                 img: '',
             },
             status: [],

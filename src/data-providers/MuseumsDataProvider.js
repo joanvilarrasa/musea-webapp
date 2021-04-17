@@ -56,6 +56,17 @@ export const MuseumsDataProvider = (type,params,urlAPIMuseums) => {
             }
             
             return axios(options2).then((res) => {return res.data});
+        
+        case "OBRA_DELETE":
+        
+            var uri2 = urlAPIMuseums + '/museums/'+params[1]+'/'+params[2];
+            var options2 = {
+                method: 'GET',
+                url: uri2,
+                params: params[0],
+            }
+            
+            return axios(options2).then((res) => {return res.data});
 
         default:
             console.log(params);

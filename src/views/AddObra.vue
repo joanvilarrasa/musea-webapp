@@ -69,7 +69,7 @@
     <button class="submit">Crear Obra</button>
   </form><br><br>
   <div v-if="this.status.name != undefined">
-    Obra creat correctament
+    Obra creada correctament
   </div>
 </div>
 </template>

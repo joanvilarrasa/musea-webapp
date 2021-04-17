@@ -12,6 +12,7 @@
                     <th>Autor</th> 
                     <th> Puntuació </th> 
                     <th> Imatge </th> 
+                    <th> Manage </th>
                 </tr>
             </thead>
             <tbody>
@@ -21,6 +22,7 @@
                     <td> {{obra.author}} </td>
                     <td> {{obra.score}} </td>
                     <td><v-img lazy-src="" max-height="100" max-width="150" :src="obra.image"></v-img></td>
+                    <td> <button class="delete" v-on:click="esborrarObra(obra.id)"> Delete</button> </td>
                 </tr>
             </tbody>  
         </table>
@@ -56,6 +58,13 @@ export default {
                 
             })
 
+        },
+        esborrar_expo: function(id_obra){
+            let ids =  [id_obra, this.$route.params.id_museu, this.$route.params.id_exposition]
+            DataProvider("MUSEUMS", "OBRA_DELETE", ids).then((res) => {
+                console.log(res)
+                this.obres=res.exposition.works;
+            })
         }
 
     },
@@ -81,13 +90,13 @@ th {
   border: 1px solid white;
   height: 15px;
 }
-.submit {
-  background-color: #4CAF50;
-  color: white;
+.delete {
+  background-color: #bdbdbd;
+  color: black;
   padding: 12px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  float: left;
+  float: center;
 }
 </style>
