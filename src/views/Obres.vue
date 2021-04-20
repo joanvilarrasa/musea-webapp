@@ -12,7 +12,7 @@
                     <th>Autor</th> 
                     <th> Puntuació </th> 
                     <th> Imatge </th> 
-                    <th> Manage </th>
+                   <!-- <th> Manage </th>-->
                 </tr>
             </thead>
             <tbody>
@@ -22,7 +22,7 @@
                     <td> {{obra.author}} </td>
                     <td> {{obra.score}} </td>
                     <td><v-img lazy-src="" max-height="100" max-width="150" :src="obra.image"></v-img></td>
-                    <td> <button class="delete" v-on:click="esborrarObra(obra.id)"> Delete</button> </td>
+                   <!-- <td> <button class="delete" v-on:click="esborrarObra(obra.id)"> Delete</button> </td> -->
                 </tr>
             </tbody>  
         </table>
