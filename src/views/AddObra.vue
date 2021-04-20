@@ -104,6 +104,9 @@ export default {
             console.log(params)      
             DataProvider("MUSEUMS", "OBRA_CREATE",  params).then((res) => {
                     this.status = res;
+                    if(this.status!=null){
+                      this.$router.push({ name: "obres",  params: { id_museu: this.$route.params.id_museu, id_exposition: this.$route.params.id_exposition }})
+                    }
                 })
         },
     }

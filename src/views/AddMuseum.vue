@@ -106,6 +106,9 @@ export default {
             DataProvider("MUSEUMS", "MUSEUMS_CREATE",  params).then((res) => {
                     this.status = res;
                     console.log(this.status)
+                    if(this.status.name!=null){
+                      this.$router.push({ name: "Museums"})
+                    }
                 })
         },
     }
