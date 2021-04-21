@@ -13,14 +13,15 @@ import Obres from '../views/Obres.vue'
 import AddExpo from '../views/AddExposition.vue'
 import AddObra from '../views/AddObra.vue'
 Vue.use(VueRouter)
-
+const autenthenticate=false;
 const ifAuthenticated = (to, from, next) => {
   if (AuthStore.isAuthenticated()) {
     next()
     return
   }
-  AuthStore.clearAuthData();
-  next('/login');
+  //AuthStore.clearAuthData();
+  //next('/login');
+  next()
   return
 }
 
