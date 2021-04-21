@@ -5,7 +5,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "postinstall": "if test \"$NODE_ENV\" = \"production\" ; then npm run build ; fi ",
+    "start": "node server.js"
   },
   "dependencies": {
     "apexcharts": "^3.26.0",
@@ -19,7 +21,9 @@
     "vue-stateful-form": "^1.4.0",
     "vuetify": "^2.4.0",
     "vuex": "^3.6.2",
-    "vuex-persistedstate": "^4.0.0-beta.3"
+    "vuex-persistedstate": "^4.0.0-beta.3",
+    "express": "^4.17.1",
+    "serve-static": "^1.14.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
