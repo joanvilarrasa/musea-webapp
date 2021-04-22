@@ -1,6 +1,5 @@
 <template>
   <div class="museums">
-    <h1>Museums Page</h1>
     <v-app>
     <v-simple-table dark
     class="elevation-1">

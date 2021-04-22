@@ -1,6 +1,5 @@
 <template>
   <div class="users">
-    <h1>Users Page</h1>
     <v-app>
     <v-simple-table dark
     class="elevation-1">
