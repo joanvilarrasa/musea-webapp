@@ -1,30 +1,26 @@
 
 <div>
-  <v-form v-model="valid">
-    <p class="ma-4 login-title">Login</p>
-    <v-text-field
-      class="mt-5 ml-5 mr-5 login-input rounded-1"
-      v-model="username"
-      label="Username"
-      type="text"
-      :rules="usernameRules"
-      outlined
-      autocomplete="off"
-      required
-    ></v-text-field>
-    <v-text-field
-      id="password"
-      class="ml-5 mr-5 login-input rounded-1"
-      v-model="password"
-      label="Password"
-      type="password"
-      :rules="passwordRules"
-      outlined
-      required
-    ></v-text-field>
-    <v-btn :disabled="!valid" color="success" class="mr-4" @click="loginFunction">
-      Login
-    </v-btn>
-  </v-form>
+  <v-parallax
+    dark
+    src="https://www.ecestaticos.com/imagestatic/clipping/35b/adc/35badcd92c6e6b402aa0cd45f472b324/el-museo-del-prado-se-prepara-para-la-vuelta-a-la-normalidad.jpg?mtime=1588265655"
+    height="100vh"
+  >
+  <div class="login-container">
+    <div class="login-card-container">
+      <div class="login-form-title">
+        <v-icon class="tab-menu-icon" large="large">mdi-briefcase</v-icon>Musea Admin
+      </div>
+      <v-card light="light" rounded>
+        <v-card-text>
+          <v-form v-model="valid">
+            <v-text-field v-model="email" label="Email" type="text" :rules="emailRules" autocomplete="off" required prepend-icon="mdi-email"></v-text-field>
+            <v-text-field id="password" v-model="password" label="Password" type="password" :rules="passwordRules" required prepend-icon="mdi-lock"></v-text-field>
+            <v-btn style="margin-top: 1rem;" :disabled="!valid"  @click="loginFunction">Log in</v-btn>
+          </v-form>
+        </v-card-text>
+      </v-card>
+    </div>
+  </div>
+  </v-parallax>
 </div>
 
