@@ -7,13 +7,15 @@
   >
   <div class="login-container">
     <div class="login-card-container">
-      <div class="login-form-title">
-        <v-icon class="tab-menu-icon" large="large">mdi-briefcase</v-icon>Musea Admin
-      </div>
+      <v-card color="#dee3ff" rounded>
+        <div class="login-form-title">
+          <v-icon class="tab-menu-icon" large="large">mdi-briefcase</v-icon>Musea Admin
+        </div>
+      </v-card>
       <v-card light="light" rounded>
         <v-card-text>
           <v-form v-model="valid">
-            <v-text-field v-model="email" label="Email" type="text" :rules="emailRules" autocomplete="off" required prepend-icon="mdi-email"></v-text-field>
+            <v-text-field v-model="email" label="Email" :rules="emailRules" autocomplete="off" required prepend-icon="mdi-email"></v-text-field>
             <v-text-field id="password" v-model="password" label="Password" type="password" :rules="passwordRules" required prepend-icon="mdi-lock"></v-text-field>
             <v-btn style="margin-top: 1rem;" :disabled="!valid"  @click="loginFunction">Log in</v-btn>
           </v-form>

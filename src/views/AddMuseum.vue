@@ -176,7 +176,7 @@ export default {
     
 </script>
 
-<style>
+<style scoped>
 input[type=text], select, textarea{
   width: 70%;
   padding: 12px;
