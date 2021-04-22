@@ -1,5 +1,5 @@
 import axios from 'axios';
-import AuthStore from '@/store-cold/auth/index.js'
+import AuthStore from '@/store-cold/auth/index.js';
 
 export const AuthDataProvider = (type,params,urlAPIAuth) => {
 
@@ -21,25 +21,10 @@ export const AuthDataProvider = (type,params,urlAPIAuth) => {
                 data: data,
             }
             return axios(options).then((res) => {
-                let uri2 = urlAPIAuth + '/oauth/check_token';
-                let token = {token: res.data.access_token};
-                let options2 = {
-                    method: 'GET',
-                    url: uri2,
-                    auth: {
-                        username: 'mobile',
-                        password: 'mobilePass'
-                    },
-                    params: token,
-                }
-                return axios(options2).then((res2) => {
-                    if(res2.data.authorities.includes("ROLE_ADMIN")) {
-                        AuthStore.setToken(res.data.access_token);
-                        AuthStore.setExpirationDate(new Date().getTime() + parseInt(res.data.expires_in)*1000);
-                        axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
-                    }
-                    return res2.data;
-                })
+                AuthStore.setToken(res.data.access_token);
+                AuthStore.setExpirationDate(new Date().getTime() + parseInt(res.data.expires_in)*1000);
+                axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
+                return res.data;
             }).catch((error) => {
                 console.log(error);
             });

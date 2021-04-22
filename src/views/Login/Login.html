@@ -15,7 +15,7 @@
           <v-form v-model="valid">
             <v-text-field v-model="email" label="Email" type="text" :rules="emailRules" autocomplete="off" required prepend-icon="mdi-email"></v-text-field>
             <v-text-field id="password" v-model="password" label="Password" type="password" :rules="passwordRules" required prepend-icon="mdi-lock"></v-text-field>
-            <v-btn style="margin-top: 1rem;" :disabled="!valid"  @click="loginFunction" type="submit">Log in</v-btn>
+            <v-btn style="margin-top: 1rem;" :disabled="!valid"  @click="loginFunction">Log in</v-btn>
           </v-form>
         </v-card-text>
       </v-card>

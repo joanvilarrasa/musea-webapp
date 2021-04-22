@@ -10,7 +10,8 @@ export default {
       email: null,
       password: null,
       emailRules: [
-        v => !!v || 'Username is required',
+        v => !!v || 'Email is required',
+        v => validateEmail(v) || 'Example john@doe.com',
       ],
       passwordRules: [
         v => !!v || 'Password is required',
@@ -20,6 +21,7 @@ export default {
     methods: {
       loginFunction() {
         DataProvider("AUTH", "LOGIN", { username: this.email, password: this.password }).then((res) => {
+          // put the user in vuex???
           this.$router.push('/');
         }).catch(error => {
           cosnole.log(error)
@@ -27,6 +29,11 @@ export default {
       }
 
     },
+}
+
+function validateEmail(email) {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
 }
 </script>
 

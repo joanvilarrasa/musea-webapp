@@ -1,11 +1,7 @@
 <template>
   <div id="app">
-    <v-card v-if="loggedIn" class="overflow-hidden">
-      <v-app-bar
-        color="#6A76AB"
-        dark
-        dense
-      >
+    <v-card v-if="$route.name != 'Login'" class="overflow-hidden">
+      <v-app-bar color="#6A76AB" dark dense>
         <v-toolbar-title>MUSEA ADMIN</v-toolbar-title>
         <template v-slot:extension>
           <v-tabs align-with-title>
@@ -15,6 +11,10 @@
             <v-tab link to="/obres"><v-icon class="tab-menu-icon">mdi-palette</v-icon>Obres</v-tab>
           </v-tabs>
         </template>
+        <v-spacer></v-spacer>
+        <v-btn icon @click="logoutFunction">
+          <v-icon>mdi-logout</v-icon>
+        </v-btn>
       </v-app-bar>
     </v-card>
     <router-view/>
@@ -36,13 +36,20 @@
 </style>
 
 <script>
+import AuthStore from '@/store-cold/auth/index.js';
 
 export default {
   data: () => ({
     drawer: false,
     group: null,
-    loggedIn: false
   }),
+  methods: {
+    logoutFunction() {
+      AuthStore.clearAuthData();
+      this.$router.push('/login');
+    }
+  }
+
 }
 </script>
 
