@@ -12,7 +12,7 @@ const store = new Vuex.Store({
     module1,
   },
 
-  state: { 
+  state: {
   },
 
   mutations: {

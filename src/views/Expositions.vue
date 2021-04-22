@@ -1,6 +1,5 @@
 <template>
   <div class="Exposition">
-    <h1>Expositions Page</h1>
     <v-app>
     <v-simple-table dark
     class="elevation-1">

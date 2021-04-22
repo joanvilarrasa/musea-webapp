@@ -8,6 +8,7 @@ function setToken(newToken) {
 function clearAuthData() {
     localStorage.removeItem('token');
     localStorage.removeItem('expirationDate');
+    delete axios.defaults.headers.common['Authorization'];
 }
 function setExpirationDate(newDate) {
     localStorage.setItem('expirationDate', newDate);
