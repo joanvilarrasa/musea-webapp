@@ -104,6 +104,9 @@ input[type=text], select, textarea{
   box-sizing: border-box;
   resize: vertical;
 }
+#form{
+ margin-top: 25px;
+ }
 
 /* Style the label to display next to the inputs */
 label {

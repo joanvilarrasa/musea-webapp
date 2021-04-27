@@ -11,8 +11,9 @@
                     <th> Adreça </th>
                     <th> Ciutat </th>
                     <th> Pais </th>
-                    <th> Nombre d'obres </th> 
+                    <th> Nombre d'exposicions </th> 
                     <th> Imatge </th> 
+                    <th> Manage </th>
                 </tr>
             </thead>
             <tbody>
@@ -21,8 +22,9 @@
                     <td> {{museum.address}} </td>
                     <td> {{museum.city}} </td>
                     <td> {{museum.country}} </td>
-                    <td> Under Construction </td>
+                    <td> {{museum.expositions.length }} </td>
                     <td><v-img lazy-src="" max-height="150" max-width="250" :src="museum.image"></v-img></td>
+                    <td> <button class="delete" v-on:click="esborrarMuseu(museum._id)"> <v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/></button> </td>
                 </tr>
             </tbody>  
         </table>
@@ -54,6 +56,14 @@ export default {
                 this.museums = res.museums;
             })
 
+        },
+        esborrarMuseu: function(id_museu){
+            
+            DataProvider("MUSEUMS", "MUSEUMS_DELETE", id_museu).then((res) => {
+                console.log(res)
+                //this.obres=res.museums;
+            })
+             this.obtenir_museums();
         }
 
     },

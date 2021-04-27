@@ -9,19 +9,20 @@
                 <tr>
                     <th>Nom Obres</th> 
                     <th>Autor</th> 
+                    <th> Tipus</th> 
                     <th> Puntuació </th> 
                     <th> Imatge </th> 
-                   <!-- <th> Manage </th>-->
+                    <th> Manage </th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="obra in this.obres" :key="obra.id">
-                    <!--<router-link :to="{ name: 'obraInfo', params: { id_museu: museum.id }}"> </router-link>-->
+                <tr v-for="obra in this.obres" :key="obra._id">
                     <td> {{obra.title}}  </td>
                     <td> {{obra.author}} </td>
+                    <td> {{obra.type}} </td>
                     <td> {{obra.score}} </td>
                     <td><v-img lazy-src="" max-height="100" max-width="150" :src="obra.image"></v-img></td>
-                   <!-- <td> <button class="delete" v-on:click="esborrarObra(obra.id)"> Delete</button> </td> -->
+                    <td> <button class="delete" v-on:click="esborrarObra(obra._id)"> <v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/></button> <button class="delete"> <router-link :to="{ name: 'ObraEdit', params: { id_obra: obra._id, obra_titol: obra.title, obra_autor: obra.author, obra_tipus: obra.type}}"> <v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </router-link></button> </td>
                 </tr>
             </tbody>  
         </table>
@@ -49,7 +50,7 @@ export default {
         }
     },
     methods: {
-        obtenir_expos: function(id_museu, id_exposition){
+        obtenir_obres: function(id_museu, id_exposition){
             let ids = [id_museu , id_exposition]
             DataProvider("MUSEUMS", "OBRES", ids).then((res) => {
                 console.log(res)
@@ -58,18 +59,20 @@ export default {
             })
 
         },
-        esborrar_expo: function(id_obra){
+        esborrarObra: function(id_obra){
             let ids =  [id_obra, this.$route.params.id_museu, this.$route.params.id_exposition]
             DataProvider("MUSEUMS", "OBRA_DELETE", ids).then((res) => {
                 console.log(res)
-                this.obres=res.exposition.works;
+                //this.obres=res.exposition.works;
             })
-        }
+             this.obtenir_obres(this.$route.params.id_museu, this.$route.params.id_exposition);
+        },
+        
 
     },
     mounted() {
         
-        this.obtenir_expos(this.$route.params.id_museu, this.$route.params.id_exposition);
+        this.obtenir_obres(this.$route.params.id_museu, this.$route.params.id_exposition);
     }
 }
 

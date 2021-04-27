@@ -141,6 +141,9 @@ label {
   cursor: pointer;
   float: left;
 }
+#form{
+ margin-top: 25px;
+ }
 
 /* Style the container */
 .container {

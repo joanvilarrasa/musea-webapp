@@ -112,6 +112,7 @@ export default {
                 })
         },
     }
+    
 /*
         addPhoto: function(albumName) {
           var files = document.getElementById("foto").files;
@@ -223,6 +224,9 @@ label {
   width: 75%;
   margin-top: 6px;
 }
+#form{
+ margin-top: 25px;
+ }
 
 /* Clear floats after the columns */
 .row:after {

@@ -12,6 +12,7 @@ import Expositions from '../views/Expositions.vue'
 import Obres from '../views/Obres.vue'
 import AddExpo from '../views/AddExposition.vue'
 import AddObra from '../views/AddObra.vue'
+import ObraEdit from '../views/ObraEdit.vue'
 Vue.use(VueRouter)
 
 const ifAuthenticated = (to, from, next) => {
@@ -74,6 +75,12 @@ const routes = [
     component: AddObra,
     beforeEnter: ifAuthenticated,
     },
+    {
+      path: '/museums/:id_museu/:id_exposition/:id_obra/edit',
+      name: 'ObraEdit',
+      component: ObraEdit,
+      beforeEnter: ifAuthenticated,
+      },
   {
     path: '/about',
     name: 'About',

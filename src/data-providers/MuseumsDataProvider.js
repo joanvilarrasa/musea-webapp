@@ -21,6 +21,16 @@ export const MuseumsDataProvider = (type,params,urlAPIMuseums) => {
                 params: params,
             }
             return axios(options2).then((res) => {return res.data});
+
+        case "MUSEUMS_DELETE":
+            var uri2 = urlAPIMuseums + '/museums/'+ params;
+            var options2 = {
+                method: 'DELETE',
+                url: uri2,
+                params: params,
+            }
+            return axios(options2).then((res) => {return res.data});
+
         case "EXPOSITIONS":
             var uri3 = urlAPIMuseums + '/museums/'+params;
             var options3 = {
@@ -28,6 +38,7 @@ export const MuseumsDataProvider = (type,params,urlAPIMuseums) => {
                 url: uri3, 
             }
             return axios(options3).then((res) => {return res.data});
+
         case "EXPO_CREATE":
             var uri2 = urlAPIMuseums + '/museums/'+params[1];
             var options2 = {
@@ -37,6 +48,17 @@ export const MuseumsDataProvider = (type,params,urlAPIMuseums) => {
             }
             console.log(options2)
             return axios(options2).then((res) => {return res.data});
+        
+        case "EXPO_DELETE":
+            var uri2 = urlAPIMuseums + '/museums/'+params[1]+'/'+parmas[0];
+            var options2 = {
+                method: 'DELETE',
+                url: uri2,
+                params: params[0],
+            }
+            console.log(options2)
+            return axios(options2).then((res) => {return res.data});
+
 
         case "OBRES":
             var uri3 = urlAPIMuseums + '/museums/'+params[0]+'/'+params[1];
@@ -47,7 +69,6 @@ export const MuseumsDataProvider = (type,params,urlAPIMuseums) => {
             return axios(options3).then((res) => {return res.data});
 
         case "OBRA_CREATE":
-            
             var uri2 = urlAPIMuseums + '/museums/'+params[1]+'/'+params[2];
             var options2 = {
                 method: 'POST',
@@ -58,14 +79,22 @@ export const MuseumsDataProvider = (type,params,urlAPIMuseums) => {
             return axios(options2).then((res) => {return res.data});
         
         case "OBRA_DELETE":
-        
-            var uri2 = urlAPIMuseums + '/museums/'+params[1]+'/'+params[2];
+            var uri2 = urlAPIMuseums + '/museums/'+params[1]+'/'+params[2] +'/' + params[0];
             var options2 = {
-                method: 'GET',
+                method: 'DELETE',
                 url: uri2,
                 params: params[0],
             }
             
+            return axios(options2).then((res) => {return res.data});
+
+        case "OBRA_EDIT":
+            var uri2 = urlAPIMuseums + '/museums/'+params[1]+'/'+params[2] +'/' + params[3];
+            var options2 = {
+                method: 'PUT',
+                url: uri2,
+                params: params[0],
+            }
             return axios(options2).then((res) => {return res.data});
 
         default:
