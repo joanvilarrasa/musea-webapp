@@ -4,7 +4,7 @@ import AuthStore from '../store-cold/auth/index.js'
 
 // Routes
 import Museums from '../views/Museums.vue'
-import Home from '../views/Home.vue'
+import Home from '../views/Home/Home.vue'
 import Usuaris from '../views/Usuaris.vue'
 import AddMuseum from '../views/AddMuseum.vue'
 import Login from '../views/Login/Login.vue'
