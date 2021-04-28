@@ -24,11 +24,22 @@ export const MuseumsDataProvider = (type,params,urlAPIMuseums) => {
 
         case "MUSEUMS_DELETE":
             var uri2 = urlAPIMuseums + '/museums/'+ params;
+            console.log(uri2)
             var options2 = {
                 method: 'DELETE',
                 url: uri2,
                 params: params,
             }
+            return axios(options2).then((res) => {return res.data});
+        
+        case "MUSEUM_EDIT":
+            var uri2 = urlAPIMuseums + '/museums/'+params[1];
+            var options2 = {
+                method: 'PUT',
+                url: uri2,
+                params: params[0],
+            }
+            console.log(uri2)
             return axios(options2).then((res) => {return res.data});
 
         case "EXPOSITIONS":
@@ -46,17 +57,27 @@ export const MuseumsDataProvider = (type,params,urlAPIMuseums) => {
                 url: uri2,
                 params: params[0],
             }
-            console.log(options2)
             return axios(options2).then((res) => {return res.data});
         
         case "EXPO_DELETE":
-            var uri2 = urlAPIMuseums + '/museums/'+params[1]+'/'+parmas[0];
+            var uri2 = urlAPIMuseums + '/museums/'+params[1]+'/'+params[0];
+            console.log(params)
             var options2 = {
                 method: 'DELETE',
                 url: uri2,
+
+            }
+            console.log(uri2)
+            return axios(options2).then((res) => {return res.data});
+
+        case "EXPO_EDIT":
+            var uri2 = urlAPIMuseums + '/museums/'+params[1]+'/'+params[2] ;
+            var options2 = {
+                method: 'PUT',
+                url: uri2,
                 params: params[0],
             }
-            console.log(options2)
+            console.log(uri2)
             return axios(options2).then((res) => {return res.data});
 
 
@@ -85,7 +106,8 @@ export const MuseumsDataProvider = (type,params,urlAPIMuseums) => {
                 url: uri2,
                 params: params[0],
             }
-            
+            console.log(uri2)
+
             return axios(options2).then((res) => {return res.data});
 
         case "OBRA_EDIT":
@@ -95,6 +117,7 @@ export const MuseumsDataProvider = (type,params,urlAPIMuseums) => {
                 url: uri2,
                 params: params[0],
             }
+            console.log(uri2)
             return axios(options2).then((res) => {return res.data});
 
         default:

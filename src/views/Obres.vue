@@ -66,6 +66,8 @@ export default {
                 //this.obres=res.exposition.works;
             })
              this.obtenir_obres(this.$route.params.id_museu, this.$route.params.id_exposition);
+            //location.reload();
+
         },
         
 
