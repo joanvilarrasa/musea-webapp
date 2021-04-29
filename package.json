@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "apexcharts": "^3.26.0",
+    "aws-sdk": "^2.896.0",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "express": "^4.17.1",
     "mdbvue": "^6.7.2",
+    "serve-static": "^1.14.1",
     "vue": "^2.6.11",
     "vue-apexcharts": "^1.6.0",
     "vue-axios": "^3.2.4",
@@ -21,9 +24,7 @@
     "vue-stateful-form": "^1.4.0",
     "vuetify": "^2.4.0",
     "vuex": "^3.6.2",
-    "vuex-persistedstate": "^4.0.0-beta.3",
-    "express": "^4.17.1",
-    "serve-static": "^1.14.1"
+    "vuex-persistedstate": "^4.0.0-beta.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

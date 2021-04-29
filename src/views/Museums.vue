@@ -24,7 +24,7 @@
                     <td> {{museum.country}} </td>
                     <td> {{museum.expositions.length }} </td>
                     <td><v-img lazy-src="" max-height="150" max-width="250" :src="museum.image"></v-img></td>
-                    <td> <button class="delete" v-on:click="esborrarMuseu(museum._id)">  <router-link :to="{ name: 'Museums'}"><v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/></router-link></button> <button class="delete"> <router-link :to="{ name: 'MuseumEdit', params: { id_museu: museum._id, museum_nom: museum.name, museum_city: museum.city, museum_adresss: museum.address, museum_country: museum.country}}"> <v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </router-link></button> </td>
+                    <td> <button class="delete" @click="esborrarMuseu(museum._id)">  <router-link :to="{ name: 'Museums'}"><v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/></router-link></button> <button class="delete"> <router-link :to="{ name: 'MuseumEdit', params: { id_museu: museum._id, museum_nom: museum.name, museum_city: museum.city, museum_adresss: museum.address, museum_country: museum.country}}"> <v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </router-link></button> </td>
                 </tr>
             </tbody>  
         </table>
@@ -41,6 +41,7 @@
 
 <script>
 import { DataProvider } from "@/data-providers/_Index.js"
+
  
 
 export default {
@@ -61,11 +62,8 @@ export default {
             
             DataProvider("MUSEUMS", "MUSEUMS_DELETE", id_museu).then((res) => {
                 console.log(res)
-                //this.obres=res.museums;
+                this.obtenir_museums();
             })
-             this.obtenir_museums();
-            //this.$router.push({ name: "Museums"})
-            location.reload()
         }
 
     },

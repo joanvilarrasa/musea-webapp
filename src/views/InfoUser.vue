@@ -38,7 +38,6 @@
       </div>
       <div class="col-25">
         <label for="fname">{{this.user.name}}</label>
-        <!--<input type="text" id="name" name="name" v-bind:placeholder="this.user.name" v-model="form.name">-->
       </div>
     </div>
     <div class="row">

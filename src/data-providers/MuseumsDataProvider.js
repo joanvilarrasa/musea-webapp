@@ -30,7 +30,8 @@ export const MuseumsDataProvider = (type,params,urlAPIMuseums) => {
                 url: uri2,
                 params: params,
             }
-            return axios(options2).then((res) => {return res.data});
+            return axios(options2).then(response => {
+                return response.data}).catch((err)=> { console.log(err)});
         
         case "MUSEUM_EDIT":
             var uri2 = urlAPIMuseums + '/museums/'+params[1];
@@ -67,8 +68,8 @@ export const MuseumsDataProvider = (type,params,urlAPIMuseums) => {
                 url: uri2,
             }
             console.log(uri2)
-            //return "hello"
-            return axios(options2).then((res) => {return res.data});
+            return axios.delete(uri2).then((res) => {return res.data}).catch((err)=> { console.log(err)});
+            //return axios(options2).then((res) => {return res.data}).catch((err)=> { console.log(err)});
 
         case "EXPO_EDIT":
             var uri2 = urlAPIMuseums + '/museums/'+params[1]+'/'+params[2] ;

@@ -63,7 +63,7 @@
         <label for="subject">Foto:</label>
       </div>
     <div class="col-25">
-          <input type="file" accept="image/*" id="foto">
+          <input type="file" accept="image/*" id="foto" v-on:input="previewFile($event)" >
       </div>
     </div>
     <button class="submit">Crear Museu</button>
@@ -77,11 +77,13 @@
 
 <script>
 import { DataProvider } from "@/data-providers/_Index.js"
+//import { Uploader } from "@/S3Uploader.js"
 
 export default {
     name: "AddMuseum",
     data() {
         return{
+            img_read: "",
             form: {
                 name: '',
                 country: '',
@@ -97,7 +99,9 @@ export default {
         }
     },
     methods: {
-        post: function(){
+        post:  function(){
+            //let up= new Uploader();
+            //let link_img = Uploader.upload(this.form.img)
 
             //this.SW.addPhoto("/museums")
             //aconseguirlink
@@ -111,67 +115,16 @@ export default {
                     }
                 })
         },
-    }
-    
-/*
-        addPhoto: function(albumName) {
-          var files = document.getElementById("foto").files;
-          if (!files.length) {
-            return alert("Please choose a file to upload first.");
-          }
-          var file = files[0];
-          var fileName = file.name;
-          var albumPhotosKey = encodeURIComponent(albumName) + "/";
-
-          var photoKey = albumPhotosKey + fileName;
-
-          // Use S3 ManagedUpload class as it supports multipart uploads
-              var upload = new AWS.S3.ManagedUpload({
-                params: {
-                  Bucket: albumBucketName,
-                  Key: photoKey,
-                  Body: file
-                }
-              });
-
-              var promise = upload.promise();
-
-              promise.then(
-                function(data) {
-                  alert("Successfully uploaded photo.");
-                  viewAlbum(albumName);
-                },
-                function(err) {
-                  return alert("There was an error uploading your photo: ", err.message);
-                }
-              );
-    }
-  },
-  mounted() {*/
-      /*let recaptchaScript = document.createElement('script')
-      recaptchaScript.setAttribute('src', 'https://sdk.amazonaws.com/js/aws-sdk-v3.js')
-      document.head.appendChild(recaptchaScript)
-      let recaptchaScript2 = document.createElement('script')
-      recaptchaScript2.setAttribute('src', './s3_photoExample.js')
-      document.head.appendChild(recaptchaScript2)
-      var albumBucketName = "museaimages1";
-      var bucketRegion = "us-east-1";
-      var IdentityPoolId = "musea";
-
-      AWS.config.update({
-        region: bucketRegion,
-        credentials: new AWS.CognitoIdentityCredentials({
-          IdentityPoolId: IdentityPoolId
-        })
-      });
-
-      this.S3 = new AWS.S3({
-        apiVersion: "2006-03-01",
-        params: { Bucket: albumBucketName }
-      });*/
-  
-  
-    
+        previewFile: function(event) {
+          var selectedFile = event.target.files[0];
+          var reader = new FileReader();
+          console.log(selectedFile)
+          this.img_read = reader.readAsDataURL(selectedFile);
+          console.log(reader)
+          
+          console.log(this.img_read)
+        }
+    }   
 
 }
     
