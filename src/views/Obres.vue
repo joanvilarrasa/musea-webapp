@@ -75,6 +75,7 @@ export default {
     mounted() {
         
         this.obtenir_obres(this.$route.params.id_museu, this.$route.params.id_exposition);
+        location.reload();
     }
 }
 

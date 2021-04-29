@@ -65,9 +65,9 @@ export const MuseumsDataProvider = (type,params,urlAPIMuseums) => {
             var options2 = {
                 method: 'DELETE',
                 url: uri2,
-
             }
             console.log(uri2)
+            //return "hello"
             return axios(options2).then((res) => {return res.data});
 
         case "EXPO_EDIT":

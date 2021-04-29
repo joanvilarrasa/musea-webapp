@@ -43,7 +43,7 @@ const routes = [
     beforeEnter: ifAuthenticated,
   },
   {
-    path: '/usuaris/:username',
+    path: '/usuaris/:userId',
     name: 'InfoUser',
     component: InfoUser,
     beforeEnter: ifAuthenticated,

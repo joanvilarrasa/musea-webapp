@@ -14,7 +14,7 @@
         <label for="fname">Room:</label>
       </div>
       <div class="col-25">
-        <input type="text" id="score" name="score" placeholder="Type of the masterpiece..." v-model="form.room">
+        <input type="text" id="score" name="score" placeholder="Room of the expo" v-model="form.room">
       </div>
     </div>
  <div class="row">
