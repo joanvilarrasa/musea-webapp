@@ -50,11 +50,9 @@ export default {
 
         },
          esborrarUser:  function(id_user){
-            
             DataProvider("USERS", "USER_DELETE", id_user).then((res) => {
                 console.log(res)
             })
-            
              this.obtenir_users();
             location.reload()
         }

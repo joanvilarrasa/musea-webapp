@@ -64,9 +64,9 @@ export default {
             DataProvider("MUSEUMS", "OBRA_DELETE", ids).then((res) => {
                 console.log(res)
                 //this.obres=res.exposition.works;
+                this.obtenir_obres(this.$route.params.id_museu, this.$route.params.id_exposition);
+
             })
-             this.obtenir_obres(this.$route.params.id_museu, this.$route.params.id_exposition);
-            //location.reload();
 
         },
         
@@ -75,7 +75,6 @@ export default {
     mounted() {
         
         this.obtenir_obres(this.$route.params.id_museu, this.$route.params.id_exposition);
-        location.reload();
     }
 }
 

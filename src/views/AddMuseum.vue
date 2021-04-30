@@ -100,7 +100,7 @@ export default {
     },
     methods: {
         post:  function(){
-            //let up= new Uploader();
+            //let Uploader= new Uploader();
             //let link_img = Uploader.upload(this.form.img)
 
             //this.SW.addPhoto("/museums")

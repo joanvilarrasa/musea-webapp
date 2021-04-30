@@ -76,11 +76,12 @@ export default {
     },
     methods: {
         put: function(){        
+            console.log(this.$route.params.id_exposition)
             let params = [ this.form, this.$route.params.id_museu, this.$route.params.id_exposition]
             DataProvider("MUSEUMS", "EXPO_EDIT",  params).then((res) => {
                     this.status = res;
                     if(this.status!=null){
-                      this.$router.push({ name: "exposition",  params: { id_museu: this.$route.params.id_museu }})
+                      this.$router.push({ name: "expositions",  params: { id_museu: this.$route.params.id_museu }})
                     }
                 })
         },

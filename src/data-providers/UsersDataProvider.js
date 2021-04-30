@@ -23,7 +23,6 @@ export const UsersDataProvider = (type,params,urlAPIMuseums) => {
                 console.log(res)
                 return res.data});
 
-        
         case "USER_DELETE":
             var uri2 = urlAPIMuseums + '/users/'+ params;
             console.log(uri2)
@@ -32,6 +31,16 @@ export const UsersDataProvider = (type,params,urlAPIMuseums) => {
                 url: uri2,
                 params: params,
             }
+            return axios(options2).then((res) => {return res.data});
+
+        case "USER_EDIT":
+            var uri2 = urlAPIMuseums + '/users/'+params[1];
+            var options2 = {
+                method: 'PUT',
+                url: uri2,
+                params: params[0],
+            }
+            console.log(uri2)
             return axios(options2).then((res) => {return res.data});
         
         

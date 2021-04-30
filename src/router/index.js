@@ -73,7 +73,7 @@ const routes = [
     beforeEnter: ifAuthenticated,
   },
   {
-    path: '/museums/:id_museu/:id_expo/edit',
+    path: '/museums/:id_museu/:id_exposition/edit',
     name: 'ExpoEdit',
     component: ExpoEdit,
     beforeEnter: ifAuthenticated,

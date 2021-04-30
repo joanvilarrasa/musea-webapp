@@ -37,7 +37,8 @@
         <label for="fname">Full Name:</label>
       </div>
       <div class="col-25">
-        <label for="fname">{{this.user.name}}</label>
+        <!--<label for="fname">{{this.user.name}}</label>-->
+        <input type="text" id="score" name="score" v-bind:placeholder="this.user.name" v-model="form.name">
       </div>
     </div>
     <div class="row">
@@ -45,11 +46,11 @@
         <label for="fname">Bio:</label>
       </div>
       <div class="col-25">
-        <label for="fname">{{this.user.bio}}</label>
-        <!--<input type="text" id="score" name="score" v-bind:placeholder="this.user.bio" v-model="form.bio">-->
+        <!--<label for="fname">{{this.user.bio}}</label>-->
+        <input type="text" id="score" name="score" v-bind:placeholder="this.user.bio" v-model="form.bio">
       </div>
     </div>
-    <!--<button class="submit">Editar User</button>-->
+    <button class="submit">Editar User</button>
   </form><br><br>
   
     </div>
@@ -83,7 +84,10 @@ export default ({
         put: function(){        
             let params = [ this.form, this.user.userId]
             DataProvider("USERS", "USER_EDIT",  params).then((res) => {
-                    console.log(res)               
+                    console.log(res)
+                    if(res!=null){
+                      this.$router.push({ name: "Usuaris"})
+                    }
                 })
         
         }

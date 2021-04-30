@@ -68,11 +68,11 @@ export const MuseumsDataProvider = (type,params,urlAPIMuseums) => {
                 url: uri2,
             }
             console.log(uri2)
-            return axios.delete(uri2).then((res) => {return res.data}).catch((err)=> { console.log(err)});
+            return axios.delete(uri2).then((res) => {return res}).catch((err)=> { console.log(err)});
             //return axios(options2).then((res) => {return res.data}).catch((err)=> { console.log(err)});
 
         case "EXPO_EDIT":
-            var uri2 = urlAPIMuseums + '/museums/'+params[1]+'/'+params[2] ;
+            var uri2 = urlAPIMuseums + '/museums/'+params[1]+'/'+params[2];
             var options2 = {
                 method: 'PUT',
                 url: uri2,

@@ -61,7 +61,6 @@ export default {
         esborrarMuseu: function(id_museu){
             
             DataProvider("MUSEUMS", "MUSEUMS_DELETE", id_museu).then((res) => {
-                console.log(res)
                 this.obtenir_museums();
             })
         }

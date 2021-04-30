@@ -20,7 +20,7 @@
                     <td> {{expo.works.length}} </td>
                     <td> {{expo.room}} </td>
                     <td><v-img lazy-src="" max-height="100" max-width="150" :src="expo.image"></v-img></td>
-                    <td> <button class="delete" @click="esborrarExpo(expo._id)"> <v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/> </button> <button class="delete"> <router-link :to="{ name: 'ExpoEdit', params: { id_expo: expo._id, expo_nom: expo.name}}"> <v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </router-link></button></td>
+                    <td> <button class="delete" @click="esborrarExpo(expo._id)"> <v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/> </button> <button class="delete"> <router-link :to="{ name: 'ExpoEdit', params: { id_exposition: expo._id, expo_nom: expo.name}}"> <v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </router-link></button></td>
                 </tr>
             </tbody>  
         </table>
@@ -62,7 +62,6 @@ export default {
             let ids =  [id_expo, this.$route.params.id_museu]
             DataProvider("MUSEUMS", "EXPO_DELETE", ids).then((res) => {
                 console.log(res)
-               // this.obres=res.museum.expositions;
                 this.obtenir_expos(this.$route.params.id_museu);
             })
             
