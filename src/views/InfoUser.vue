@@ -37,7 +37,6 @@
         <label for="fname">Full Name:</label>
       </div>
       <div class="col-25">
-        <!--<label for="fname">{{this.user.name}}</label>-->
         <input type="text" id="score" name="score" v-bind:placeholder="this.user.name" v-model="form.name">
       </div>
     </div>
@@ -46,7 +45,6 @@
         <label for="fname">Bio:</label>
       </div>
       <div class="col-25">
-        <!--<label for="fname">{{this.user.bio}}</label>-->
         <input type="text" id="score" name="score" v-bind:placeholder="this.user.bio" v-model="form.bio">
       </div>
     </div>

@@ -30,7 +30,7 @@
         <label for="fname">Score:</label>
       </div>
       <div class="col-25">
-        <input type="text" id="score" name="score" placeholder="Type of the masterpiece..." v-model="form.score">
+        <input type="text" id="score" name="score" placeholder="Score of the masterpiece..." v-model="form.score">
       </div>
     </div>
  <div class="row">
