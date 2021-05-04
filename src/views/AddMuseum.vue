@@ -60,24 +60,49 @@
     </div>
     <div class="row">
       <div class="col-25">
-        <label for="subject">Foto:</label>
+        <label for="subject">Restriccions Català:</label>
       </div>
     <div class="col-25">
-          <input type="file" accept="image/*" id="foto" v-on:input="previewFile($event)" >
+        <textarea id="ca" name="ca" placeholder="Restrictions in Catalan" style="height:70px" v-model="form.restrictions.ca"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Restriccions Castellà:</label>
+      </div>
+    <div class="col-25">
+        <textarea id="ca" name="ca" placeholder="Restrictions in Spanish" style="height:70px" v-model="form.restrictions.es"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Restriccions Anglès:</label>
+      </div>
+    <div class="col-25">
+        <textarea id="ca" name="ca" placeholder="Restrictions in English" style="height:70px" v-model="form.restrictions.en"></textarea>
       </div>
     </div>
     <button class="submit">Crear Museu</button>
+     <div class="row">
+      <div class="col-25">
+        <label for="subject">Foto:</label>
+      </div>
+    <div class="col-25">
+        <input type="file" accept="image/*" id="img" v-on:input="previewFile($event)" >
+      </div>
+    </div>
   </form><br><br>
   <div v-if="this.status.name != undefined">
     Museu creat correctament
   </div>
+  
 </div>
 </template>
 
 
 <script>
 import { DataProvider } from "@/data-providers/_Index.js"
-//import { Uploader } from "@/S3Uploader.js"
+import { Uploader } from '@/S3Uploader.js'
 
 export default {
     name: "AddMuseum",
@@ -92,20 +117,43 @@ export default {
                 ca: '',
                 es: '',
                 en: '',
-                img: '',
+                restrictions: {
+                  ca: '',
+                  es: '',
+                  en: '',
+                },
+                image: '',
             },
             status: [],
-            S3: [],
+            image_aux: null,
         }
     },
     methods: {
         post:  function(){
-            //let Uploader= new Uploader();
-            //let link_img = Uploader.upload(this.form.img)
+          //PENDING: AVOID ERRORS ON EXTREME CASES --> if no photo? avoid loading aws
+            let uploader= new Uploader();
+            const data = {
+              contentType: this.image_aux.type,
+              fileName: this.image_aux.name,
+              file: this.image_aux             
+            }
+            uploader.uploadImage(data, "/museums").then((res)=>{
+              console.log(res)
+              this.form.image=res.Location
+              console.log(this.form.image)
+               let params = this.form;
+              DataProvider("MUSEUMS", "MUSEUMS_CREATE",  params).then((res) => {
+                  this.status = res;
+                  console.log(this.status)
+                  if(this.status.name!=null){
+                    this.$router.push({ name: "Museums"})
+                  }
+              })
 
-            //this.SW.addPhoto("/museums")
-            //aconseguirlink
-            //this.form.img=link a s3
+
+            })
+            
+            /*
             let params = this.form;
             DataProvider("MUSEUMS", "MUSEUMS_CREATE",  params).then((res) => {
                     this.status = res;
@@ -113,17 +161,15 @@ export default {
                     if(this.status.name!=null){
                       this.$router.push({ name: "Museums"})
                     }
-                })
+                })*/
         },
         previewFile: function(event) {
-          var selectedFile = event.target.files[0];
-          var reader = new FileReader();
-          console.log(selectedFile)
-          this.img_read = reader.readAsDataURL(selectedFile);
-          console.log(reader)
+          this.image_aux= event.target.files[0];
+          console.log(this.image_aux)
           
-          console.log(this.img_read)
-        }
+        },
+      
+
     }   
 
 }

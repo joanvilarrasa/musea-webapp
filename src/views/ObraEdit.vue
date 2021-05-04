@@ -62,7 +62,7 @@
         <label for="subject">Foto:</label>
       </div>
     <div class="col-25">
-          <input type="file" accept="image/*" id="foto">
+        <input type="file" accept="image/*" id="img" v-on:input="previewFile($event)" >
       </div>
     </div>
     <button class="submit">Editar Obra</button>
@@ -76,6 +76,8 @@
 
 <script>
 import { DataProvider } from "@/data-providers/_Index.js"
+import { Uploader } from '@/S3Uploader.js'
+
 
 export default {
     name: "ObraEdit",
@@ -86,22 +88,39 @@ export default {
                 ca: '',
                 es: '',
                 en: '',
-                img: '',
+                image: '',
             },
             status: [],
-            S3: [],
+            image_aux: null,
+
         }
     },
     methods: {
         put: function(){
-            this.form.score=parseFloat(this.form.score)         
-            let params = [ this.form, this.$route.params.id_museu, this.$route.params.id_exposition, this.$route.params.id_obra]
-            DataProvider("MUSEUMS", "OBRA_EDIT",  params).then((res) => {
-                    this.status = res;
-                    if(this.status!=null){
-                      this.$router.push({ name: "obres",  params: { id_museu: this.$route.params.id_museu, id_exposition: this.$route.params.id_exposition}})
-                    }
-                })
+             let uploader= new Uploader();
+            const data = {
+              contentType: this.image_aux.type,
+              fileName: this.image_aux.name,
+              file: this.image_aux             
+            }
+            uploader.uploadImage(data, "/artworks ").then((res)=>{
+              this.form.image=res.Location
+              console.log(this.form.image) 
+              this.form.score=parseFloat(this.form.score)         
+              let params = [ this.form, this.$route.params.id_museu, this.$route.params.id_exposition, this.$route.params.id_obra]
+              DataProvider("MUSEUMS", "OBRA_EDIT",  params).then((res) => {
+                      this.status = res;
+                      if(this.status!=null){
+                        this.$router.push({ name: "obres",  params: { id_museu: this.$route.params.id_museu, id_exposition: this.$route.params.id_exposition}})
+                      }
+                  })
+            })
+        },
+        previewFile: function(event) {
+          this.image_aux= event.target.files[0];
+          
+          console.log(this.image_aux)
+          
         },
     }
 

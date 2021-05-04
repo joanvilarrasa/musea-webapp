@@ -48,6 +48,14 @@
         <input type="text" id="score" name="score" v-bind:placeholder="this.user.bio" v-model="form.bio">
       </div>
     </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">Canviar foto:</label>
+      </div>
+      <div class="col-25">
+        <input type="file" accept="image/*" id="img" v-on:input="previewFile($event)" >
+      </div>
+    </div>
     <button class="submit">Editar User</button>
   </form><br><br>
   
@@ -58,6 +66,8 @@
 
 <script >
 import { DataProvider } from "@/data-providers/_Index.js"
+import { Uploader } from '@/S3Uploader.js'
+
 
 export default ({
     name: "InfoUser",
@@ -67,7 +77,10 @@ export default ({
             form: {
                 name: '',
                 bio: '',
-            }
+                profilePic: '',
+            },
+            image_aux: null,
+
         }
     },
     methods: {
@@ -79,16 +92,32 @@ export default ({
             console.log(this.user)
 
         },
-        put: function(){        
-            let params = [ this.form, this.user.userId]
-            DataProvider("USERS", "USER_EDIT",  params).then((res) => {
-                    console.log(res)
-                    if(res!=null){
-                      this.$router.push({ name: "Usuaris"})
-                    }
-                })
+        put: function(){      
+             let uploader= new Uploader();
+            const data = {
+              contentType: this.image_aux.type,
+              fileName: this.image_aux.name,
+              file: this.image_aux             
+            }
+            uploader.uploadImage(data, "/users").then((res)=>{
+              this.form.profilePic=res.Location
+              console.log(this.form.profilePic) 
+          
+              let params = [ this.form, this.user.userId]
+              DataProvider("USERS", "USER_EDIT",  params).then((res) => {
+                      console.log(res)
+                      if(res!=null){
+                        this.$router.push({ name: "Usuaris"})
+                      }
+                  })
+            })
         
-        }
+        },
+         previewFile: function(event) {
+          this.image_aux= event.target.files[0];
+          console.log(this.image_aux)
+          
+        },
     },
     mounted() {
         this.obtenir_user(this.$route.params.userId);

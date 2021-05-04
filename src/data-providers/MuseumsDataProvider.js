@@ -39,6 +39,7 @@ export const MuseumsDataProvider = (type,params,urlAPIMuseums) => {
                 method: 'PUT',
                 url: uri2,
                 params: params[0],
+                data: params[0].restrictions
             }
             console.log(uri2)
             return axios(options2).then((res) => {return res.data});

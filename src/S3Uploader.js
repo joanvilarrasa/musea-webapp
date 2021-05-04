@@ -12,16 +12,7 @@ import AWS from "aws-sdk";
  * 
  */
  
- let payload = { 
-                       //contentType: contentType, // you can set it based on the type of image you are uploading like image/png
-                        fileName: fileName, 
-                        file: this.result.replace("data:*/*;base64,", "").replace("data:image/png;base64,","").replace("data:image/jpeg;base64,", "") };
-                    new Uploader().uploadImage(payload, contentType).then(response => {
-                        that.loading = false;
-                       that.yourCallbackAfterUploadIfNeeded(response);
-                   });
 
- 
  /** 
  * Documentation for reference to this:
  * 1. AWS S3 JavaScript SDK ref: https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#upload-property
@@ -29,17 +20,18 @@ import AWS from "aws-sdk";
  * 3. Nice blog on how to do the UI portion: https://www.academind.com/learn/vue-js/snippets/image-upload/
  * 4. Nice blog on how to handle image file base64: 
  */
+
+
   var albumBucketName = "museaimages1";
   var bucketRegion = "us-east-1";
-  var IdentityPoolId = "musea";
-class Uploader {
-    
-    
+  var IdentityPoolId = "us-east-1:d0b2be91-2d6c-4a94-8d54-28fea41fc2b6";
+  export class Uploader {
   constructor() {
     AWS.config.update({
         region: bucketRegion,
+        
         credentials: new AWS.CognitoIdentityCredentials({
-          IdentityPoolId: IdentityPoolId
+          IdentityPoolId: IdentityPoolId,
         })
       });
 
@@ -51,25 +43,29 @@ class Uploader {
 
   }
 
-  uploadImage(payload) {
+
+  
+
+  uploadImage(payload, album) {
     let s3 = this.s3;
     return new Promise(function(resolve, reject) {
         
-        let encodedImage = payload.file;
-        let decodedImage = Buffer.from(encodedImage, 'base64');
-       
-       
+        /*let encodedImage = payload.file;
+        console.log(encodedImage)
+        let decodedImage = Buffer.from(encodedImage, 'base64');*/
         var filePath = payload.fileName;
         var params = {
-            "Body": decodedImage,
-            "Bucket": albumBucketName,
+            "Bucket": albumBucketName+album,
+            "Body": payload.file,
             "Key": filePath,
             "ACL": "public-read", /* This makes the image public, but only works if your S3 bucket allows public access */
             "ContentType": payload.contentType /* This is important to handle jpg vs png etc */
         };
         s3.upload(params, function (err, data) {
             if (err) {
-                reject(err);
+              console.log(err)  
+              reject(err);
+
             } else {
                 /**
                  * data returned after upload will look like this:
@@ -78,11 +74,12 @@ class Uploader {
                             Location: "URL to your image"
                  */
                 resolve(data);
-                console.log(data)
+                
             }
         });
     })
   }
 }
 
-export default Uploader;
+
+

@@ -46,7 +46,7 @@
         <label for="subject">Foto:</label>
       </div>
     <div class="col-25">
-          <input type="file" accept="image/*" id="foto">
+        <input type="file" accept="image/*" id="img" v-on:input="previewFile($event)" >
       </div>
     </div>
     <button class="submit">Crear Expo</button>
@@ -60,6 +60,7 @@
 
 <script>
 import { DataProvider } from "@/data-providers/_Index.js"
+import { Uploader } from '@/S3Uploader.js'
 
 export default {
     name: "AddExpo",
@@ -71,25 +72,44 @@ export default {
                 ca:'',
                 es: '',
                 en: '',
-                img: '',
+                image: '',
             },
             status: [],
-            S3: [],
+            image_aux: null,
         }
     },
     methods: {
         post: function(){
-                       
-            let params = [ this.form,
-                            this.$route.params.id_museu]
-            DataProvider("MUSEUMS", "EXPO_CREATE",  params).then((res) => {
-                    this.status = res;
-                    console.log(this.status)
-                    if(this.status!=null)
-                     this.$router.push({ name: "expositions",  params: { id_museu: this.$route.params.id_museu}})
-                })
+            let uploader= new Uploader();
+            const data = {
+              contentType: this.image_aux.type,
+              fileName: this.image_aux.name,
+              file: this.image_aux             
+            }
+            uploader.uploadImage(data, "/expositions").then((res)=>{
+              this.form.image=res.Location
+              console.log(this.form.image) 
+              let params = [ this.form,
+                              this.$route.params.id_museu]
+              DataProvider("MUSEUMS", "EXPO_CREATE",  params).then((res) => {
+                      this.status = res;
+                      console.log(this.status)
+                      if(this.status!=null)
+                      this.$router.push({ name: "expositions",  params: { id_museu: this.$route.params.id_museu}})
+                  })
+            })
         },
+         previewFile: function(event) {
+          this.image_aux= event.target.files[0];
+          
+          console.log(this.image_aux)
+          
+        },
+
+       
+        
     }
+    
 
 }
     

@@ -59,10 +59,34 @@
     </div>
     <div class="row">
       <div class="col-25">
+        <label for="subject">Restriccions Català:</label>
+      </div>
+    <div class="col-25">
+        <textarea id="ca" name="ca" placeholder="Restrictions in Catalan" style="height:70px" v-model="form.restrictions.ca"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Restriccions Castellà:</label>
+      </div>
+    <div class="col-25">
+        <textarea id="ca" name="ca" placeholder="Restrictions in Spanish" style="height:70px" v-model="form.restrictions.es"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Restriccions Anglès:</label>
+      </div>
+    <div class="col-25">
+        <textarea id="ca" name="ca" placeholder="Restrictions in English" style="height:70px" v-model="form.restrictions.en"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
         <label for="subject">Foto:</label>
       </div>
     <div class="col-25">
-          <input type="file" accept="image/*" id="foto">
+        <input type="file" accept="image/*" id="img" v-on:input="previewFile($event)" >
       </div>
     </div>
     <button class="submit">Editar Museu</button>
@@ -73,6 +97,8 @@
 
 <script>
 import { DataProvider } from "@/data-providers/_Index.js"
+import { Uploader } from '@/S3Uploader.js'
+
 
 export default {
     name: "ObraEdit",
@@ -82,21 +108,43 @@ export default {
                 ca: '',
                 es: '',
                 en: '',
-                img: '',
+                restrictions: {
+                  ca: '',
+                  es: '',
+                  en: '',
+                },
+                image: '',
             },
             status: [],
-            S3: [],
+            image_aux: null,
+
         }
     },
     methods: {
         put: function(){
-            let params = [ this.form, this.$route.params.id_museu]
-            DataProvider("MUSEUMS", "MUSEUM_EDIT",  params).then((res) => {
-                    this.status = res;
-                    if(this.status!=null){
-                      this.$router.push({ name: "Museums"})
-                    }
-                })
+            let uploader= new Uploader();
+            const data = {
+              contentType: this.image_aux.type,
+              fileName: this.image_aux.name,
+              file: this.image_aux             
+            }
+            uploader.uploadImage(data, "/museums ").then((res)=>{
+              this.form.image=res.Location
+              console.log(this.form.image) 
+              let params = [ this.form, this.$route.params.id_museu]
+              DataProvider("MUSEUMS", "MUSEUM_EDIT",  params).then((res) => {
+                      this.status = res;
+                      if(this.status!=null){
+                        this.$router.push({ name: "Museums"})
+                      }
+                  })
+            })
+        },
+         previewFile: function(event) {
+          this.image_aux= event.target.files[0];
+          
+          console.log(this.image_aux)
+          
         },
     }
 
