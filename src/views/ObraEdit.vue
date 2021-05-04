@@ -1,5 +1,6 @@
 <template>
-<div id="form">
+<div class="view-container">
+  <div id="form">
     <form v-on:submit.prevent="put">
     <div class="row">
       <div class="col-25">
@@ -65,10 +66,6 @@
         <input type="file" accept="image/*" id="img" v-on:input="previewFile($event)" >
       </div>
     </div>
-    <button class="submit">Editar Obra</button>
-  </form><br><br>
-  <div v-if="this.status.name != undefined">
-    Obra creada correctament
   </div>
 </div>
 </template>

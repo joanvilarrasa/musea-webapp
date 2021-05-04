@@ -49,12 +49,7 @@
         <input type="file" accept="image/*" id="img" v-on:input="previewFile($event)" >
       </div>
     </div>
-    <button class="submit">Crear Expo</button>
-  </form><br><br>
-  <div v-if="this.status.name != undefined">
-    Exposició creada correctament
   </div>
-</div>
 </template>
 
 

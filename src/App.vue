@@ -17,7 +17,9 @@
         </v-btn>
       </v-app-bar>
     </v-card>
-    <router-view/>
+    <div class="app-container">
+      <router-view/>
+    </div>
   </div>
 </template>
 
@@ -29,9 +31,36 @@
   text-align: center;
   color: #2c3e50;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100vh;
 }
 .tab-menu-icon {
   margin-right: 0.5rem;
+}
+.app-container {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  overflow: hidden;
+  background: rgb(240, 240, 250);
+}
+
+.view-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.table-container{
+  align-self: flex-start;
+  width: 100%;
+  flex-grow: 1;
 }
 </style>
 

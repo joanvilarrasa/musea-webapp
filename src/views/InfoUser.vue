@@ -1,51 +1,53 @@
 <template>
-    <div id="form">
+<div class="view-container">
+  <div id="form">
     <form v-on:submit.prevent="put">
-    <div class="row">
-         <div class="col-25">
-         </div>
-        <div class="col-25">
-            <v-img lazy-src="" max-height="150" max-width="250" :src="user.profilePic"></v-img>
+      <div class="row">
+          <div class="col-25">
+          </div>
+          <div class="col-25">
+              <v-img lazy-src="" max-height="150" max-width="250" :src="user.profilePic"></v-img>
+          </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="fname">Username:</label>
         </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="fname">Username:</label>
+        <div>
+          <label for="fname">{{this.$route.params.userId}}</label>
+        </div>
       </div>
-      <div class="col-25">
-        <label for="fname">{{this.$route.params.userId}}</label>
+      <div class="row">
+        <div>
+          <label for="fname">Premium:</label>
+        </div>
+        <div>
+          <label for="fname">{{this.user.premium}}</label>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="fname">Premium:</label>
+      <div class="row">
+        <div>
+          <label for="fname">Points:</label>
+        </div>
+        <div>
+          <label for="fname">{{this.user.points}}</label>
+        </div>
       </div>
-      <div class="col-25">
-        <label for="fname">{{this.user.premium}}</label>
+      <div class="row">
+        <div>
+          <label for="fname">Full Name:</label>
+        </div>
+        <div>
+          <input type="text" id="score" name="score" v-bind:placeholder="this.user.name" v-model="form.name">
+        </div>
       </div>
-    </div>
-     <div class="row">
-      <div class="col-25">
-        <label for="fname">Points:</label>
-      </div>
-      <div class="col-25">
-        <label for="fname">{{this.user.points}}</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="fname">Full Name:</label>
-      </div>
-      <div class="col-25">
-        <input type="text" id="score" name="score" v-bind:placeholder="this.user.name" v-model="form.name">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="fname">Bio:</label>
-      </div>
-      <div class="col-25">
-        <input type="text" id="score" name="score" v-bind:placeholder="this.user.bio" v-model="form.bio">
+      <div class="row">
+        <div>
+          <label for="fname">Bio:</label>
+        </div>
+        <div>
+          <input type="text" id="score" name="score" v-bind:placeholder="this.user.bio" v-model="form.bio">
+        </div>
       </div>
     </div>
     <div class="row">
@@ -58,9 +60,10 @@
     </div>
     <button class="submit">Editar User</button>
   </form><br><br>
-  
-    </div>
+      
 
+    </div>
+</div>
 
 </template>
 

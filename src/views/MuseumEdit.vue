@@ -1,5 +1,6 @@
 <template>
-<div id="form">
+<div class="view-container">
+  <div id="form">
     <form v-on:submit.prevent="put">
     <div class="row">
       <div class="col-25">

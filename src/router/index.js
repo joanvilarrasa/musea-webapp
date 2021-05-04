@@ -4,7 +4,7 @@ import AuthStore from '../store-cold/auth/index.js'
 
 // Routes
 import Museums from '../views/Museums.vue'
-import Home from '../views/Home.vue'
+import Home from '../views/Home/Home.vue'
 import Usuaris from '../views/Usuaris.vue'
 import AddMuseum from '../views/AddMuseum.vue'
 import Login from '../views/Login/Login.vue'
@@ -95,20 +95,11 @@ const routes = [
     name: 'AddObra',
     component: AddObra,
     beforeEnter: ifAuthenticated,
-    },
-    {
-      path: '/museums/:id_museu/:id_exposition/:id_obra/edit',
-      name: 'ObraEdit',
-      component: ObraEdit,
-      beforeEnter: ifAuthenticated,
-      },
+  },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    path: '/museums/:id_museu/:id_exposition/:id_obra/edit',
+    name: 'ObraEdit',
+    component: ObraEdit,
     beforeEnter: ifAuthenticated,
   },
   {
