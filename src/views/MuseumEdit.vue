@@ -1,72 +1,74 @@
 <template>
-<div id="form">
+<div class="view-container">
+  <div id="form">
     <form v-on:submit.prevent="put">
-    <div class="row">
-      <div class="col-25">
-        <label for="fname">Nom Museum:</label>
+      <div class="row">
+        <div>
+          <label for="fname">Nom Museum:</label>
+        </div>
+        <div>
+          <label for="fname">{{this.$route.params.museum_nom}}</label>
+        </div>
       </div>
-      <div class="col-25">
-        <label for="fname">{{this.$route.params.museum_nom}}</label>
+      <div class="row">
+        <div>
+          <label for="fname">Ciutat:</label>
+        </div>
+        <div>
+          <label for="fname">{{this.$route.params.museum_city}}</label>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="fname">Ciutat:</label>
+      <div class="row">
+        <div>
+          <label for="fname">Adreça:</label>
+        </div>
+        <div>
+          <label for="fname">{{this.$route.params.museum_adresss}}</label>
+        </div>
       </div>
-      <div class="col-25">
-        <label for="fname">{{this.$route.params.museum_city}}</label>
+      <div class="row">
+        <div>
+          <label for="fname">Pais:</label>
+        </div>
+        <div>
+          <label for="fname">{{this.$route.params.museum_country}}</label>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="fname">Adreça:</label>
+      <div class="row">
+        <div>
+          <label for="subject">Descripció Català:</label>
+        </div>
+      <div>
+          <textarea id="ca" name="ca" placeholder="Description in Catalan" style="height:70px" v-model="form.ca"></textarea>
+        </div>
       </div>
-      <div class="col-25">
-        <label for="fname">{{this.$route.params.museum_adresss}}</label>
+      <div class="row">
+        <div>
+          <label for="subject">Descripció Castellà:</label>
+        </div>
+      <div>
+          <textarea id="es" name="es" placeholder="Description in Spanish" style="height:70px" v-model="form.es"></textarea>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="fname">Pais:</label>
+      <div class="row">
+        <div>
+          <label for="subject">Descripció Anglès:</label>
+        </div>
+      <div>
+          <textarea id="en" name="en" placeholder="Description in English" style="height:70px" v-model="form.en"></textarea>
+        </div>
       </div>
-      <div class="col-25">
-        <label for="fname">{{this.$route.params.museum_country}}</label>
+      <div class="row">
+        <div>
+          <label for="subject">Foto:</label>
+        </div>
+      <div>
+            <input type="file" accept="image/*" id="foto">
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="subject">Descripció Català:</label>
-      </div>
-    <div class="col-25">
-        <textarea id="ca" name="ca" placeholder="Description in Catalan" style="height:70px" v-model="form.ca"></textarea>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="subject">Descripció Castellà:</label>
-      </div>
-    <div class="col-25">
-        <textarea id="es" name="es" placeholder="Description in Spanish" style="height:70px" v-model="form.es"></textarea>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="subject">Descripció Anglès:</label>
-      </div>
-    <div class="col-25">
-        <textarea id="en" name="en" placeholder="Description in English" style="height:70px" v-model="form.en"></textarea>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="subject">Foto:</label>
-      </div>
-    <div class="col-25">
-          <input type="file" accept="image/*" id="foto">
-      </div>
-    </div>
-    <button class="submit">Editar Museu</button>
-  </form><br><br>
+      <button class="submit">Editar Museu</button>
+    </form><br><br>
+  </div>
 </div>
 </template>
 
