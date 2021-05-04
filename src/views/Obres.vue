@@ -19,7 +19,7 @@
                             <td> {{obra.author}} </td>
                             <td> {{obra.type}} </td>
                             <td> {{obra.score}} </td>
-                            <td><v-img lazy-src="" max-height="100" max-width="150" :src="obra.image"></v-img></td>
+                            <td><v-img lazy-src="" max-height="100" max-width="200" :src="obra.image"></v-img></td>
                             <td> <button class="delete" v-on:click="esborrarObra(obra._id)"> <v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/></button> <button class="delete"> <router-link :to="{ name: 'ObraEdit', params: { id_obra: obra._id, obra_titol: obra.title, obra_autor: obra.author, obra_tipus: obra.type}}"> <v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </router-link></button> </td>
                         </tr>
                     </tbody>  

@@ -6,7 +6,7 @@
         <div>
           <label for="fname">Titol:</label>
         </div>
-        <div>
+       <div class="col-75">
           <label for="fname">{{this.$route.params.expo_nom}}</label>
         </div>
       </div>
@@ -14,7 +14,7 @@
         <div>
           <label for="fname">Room:</label>
         </div>
-        <div>
+        <div class="col-75">
           <input type="text" id="score" name="score" placeholder="Room of the expo" v-model="form.room">
         </div>
       </div>
@@ -22,28 +22,28 @@
         <div>
           <label for="subject">Descripció Català:</label>
         </div>
-      <div>
-          <textarea id="ca" name="ca" placeholder="Description in Catalan" style="height:70px" v-model="form.ca"></textarea>
+      <div class="col-75">
+          <textarea id="ca" name="ca" placeholder="Description in Catalan" style="height:40px" v-model="form.ca"></textarea>
         </div>
       </div>
       <div class="row">
         <div>
           <label for="subject">Descripció Castellà:</label>
         </div>
-      <div>
-          <textarea id="es" name="es" placeholder="Description in Spanish" style="height:70px" v-model="form.es"></textarea>
+      <div class="col-75">
+          <textarea id="es" name="es" placeholder="Description in Spanish" style="height:40px" v-model="form.es"></textarea>
         </div>
       </div>
       <div class="row">
         <div>
           <label for="subject">Descripció Anglès:</label>
         </div>
-      <div>
-          <textarea id="en" name="en" placeholder="Description in English" style="height:70px" v-model="form.en"></textarea>
+      <div class="col-75">
+          <textarea id="en" name="en" placeholder="Description in English" style="height:40px" v-model="form.en"></textarea>
         </div>
       </div>
-    <div class="col-25">
-        <input type="file" accept="image/*" id="img" v-on:input="previewFile($event)" >
+      <div class="col-75">
+          <input type="file" accept="image/*" id="img" v-on:input="previewFile($event)" >
       </div>
       <button class="submit">Editar Expo</button>
     </form><br><br>

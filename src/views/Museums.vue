@@ -23,8 +23,8 @@
                             <td> {{museum.city}} </td>
                             <td> {{museum.country}} </td>
                             <td> {{museum.expositions.length }} </td>
-                            <td><v-img lazy-src="" max-height="150" max-width="250" :src="museum.image"></v-img></td>
-                            <td> <button class="delete" @click="esborrarMuseu(museum._id)">  <router-link :to="{ name: 'Museums'}"><v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/></router-link></button> <button class="delete"> <router-link :to="{ name: 'MuseumEdit', params: { id_museu: museum._id, museum_nom: museum.name, museum_city: museum.city, museum_adresss: museum.address, museum_country: museum.country}}"> <v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </router-link></button> </td>
+                            <td><v-img lazy-src="" max-height="100" max-width="200" :src="museum.image"></v-img></td>
+                            <td> <button class="delete" @click="esborrarMuseu(museum._id)"> <router-link :to="{ name: 'Museums'}"><v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/></router-link></button> <button class="delete"> <router-link :to="{ name: 'MuseumEdit', params: { id_museu: museum._id, museum_nom: museum.name, museum_city: museum.city, museum_adresss: museum.address, museum_country: museum.country}}"> <v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </router-link></button> </td>
                         </tr>
                     </tbody>  
                 </table>
@@ -55,7 +55,6 @@ export default {
             DataProvider("MUSEUMS", "MUSEUMS", {}).then((res) => {
                 this.museums = res.museums;
             })
-
         },
         esborrarMuseu: function(id_museu){
             
@@ -63,7 +62,6 @@ export default {
                 this.obtenir_museums();
             })
         }
-
     },
     mounted() {
         this.obtenir_museums();
@@ -74,9 +72,8 @@ export default {
 
 <style>
 table {
-   
+   overflow: visible;
   width: 100%;
-
   border: 1px solid white;
 }
 td {

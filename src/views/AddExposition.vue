@@ -5,7 +5,7 @@
       <div class="col-25">
         <label for="fname">Nom Expo:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <input type="text" id="name" name="name" placeholder="Exposition Name.." v-model="form.name">
       </div>
     </div> 
@@ -13,7 +13,7 @@
       <div class="col-25">
         <label for="subject">Room:</label>
       </div>
-    <div class="col-25">
+    <div class="col-75">
         <input type="text" id="room" name="name" placeholder="Room of the exposition.." v-model="form.room">
       </div>
     </div>
@@ -21,7 +21,7 @@
       <div class="col-25">
         <label for="subject">Descripció Català:</label>
       </div>
-    <div class="col-25">
+    <div class="col-75">
         <textarea id="ca" name="ca" placeholder="Description in Catalan" style="height:70px" v-model="form.ca"></textarea>
       </div>
     </div>
@@ -29,7 +29,7 @@
       <div class="col-25">
         <label for="subject">Descripció Castellà:</label>
       </div>
-    <div class="col-25">
+    <div class="col-75">
         <textarea id="es" name="es" placeholder="Description in Spanish" style="height:70px" v-model="form.es"></textarea>
       </div>
     </div>
@@ -37,7 +37,7 @@
       <div class="col-25">
         <label for="subject">Descripció Anglès:</label>
       </div>
-    <div class="col-25">
+    <div class="col-75">
         <textarea id="en" name="en" placeholder="Description in English" style="height:70px" v-model="form.en"></textarea>
       </div>
     </div>
@@ -45,10 +45,11 @@
       <div class="col-25">
         <label for="subject">Foto:</label>
       </div>
-    <div class="col-25">
+    <div class="col-75">
         <input type="file" accept="image/*" id="img" v-on:input="previewFile($event)" >
       </div>
     </div>
+    <button class="submit">Crear Exposition</button>
     </form>
   </div>
 </template>

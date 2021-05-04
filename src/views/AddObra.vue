@@ -6,7 +6,7 @@
       <div class="col-25">
         <label for="fname">Titiol:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <input type="text" id="title" name="title" placeholder="Masterpice title.." v-model="form.title">
       </div>
     </div>
@@ -14,7 +14,7 @@
       <div class="col-25">
         <label for="fname">Autor:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <input type="text" id="author" name="author" placeholder="Author Name.." v-model="form.author">
       </div>
     </div>
@@ -22,7 +22,7 @@
       <div class="col-25">
         <label for="fname">Type:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <input type="text" id="type" name="type" placeholder="Type of the masterpiece..." v-model="form.type">
       </div>
     </div>
@@ -30,7 +30,7 @@
       <div class="col-25">
         <label for="fname">Score:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <input type="text" id="score" name="score" placeholder="Type of the masterpiece..." v-model="form.score">
       </div>
     </div>
@@ -38,7 +38,7 @@
       <div class="col-25">
         <label for="subject">Descripció Català:</label>
       </div>
-    <div class="col-25">
+    <div class="col-75">
         <textarea id="ca" name="ca" placeholder="Description in Catalan" style="height:70px" v-model="form.ca"></textarea>
       </div>
     </div>
@@ -46,7 +46,7 @@
       <div class="col-25">
         <label for="subject">Descripció Castellà:</label>
       </div>
-    <div class="col-25">
+    <div class="col-75">
         <textarea id="es" name="es" placeholder="Description in Spanish" style="height:70px" v-model="form.es"></textarea>
       </div>
     </div>
@@ -54,7 +54,7 @@
       <div class="col-25">
         <label for="subject">Descripció Anglès:</label>
       </div>
-    <div class="col-25">
+    <div class="col-75">
         <textarea id="en" name="en" placeholder="Description in English" style="height:70px" v-model="form.en"></textarea>
       </div>
     </div>
@@ -62,7 +62,7 @@
       <div class="col-25">
         <label for="subject">Foto:</label>
       </div>
-    <div class="col-25">
+    <div class="col-75">
         <input type="file" accept="image/*" id="img" v-on:input="previewFile($event)" >
       </div>
     </div>

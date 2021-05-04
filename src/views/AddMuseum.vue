@@ -6,7 +6,7 @@
       <div class="col-25">
         <label for="fname">Nom Museu:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <input type="text" id="name" name="name" placeholder="Museum Name.." v-model="form.name">
       </div>
     </div>
@@ -14,7 +14,7 @@
       <div class="col-25">
         <label for="lname">País:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <input type="text" id="country" name="country" placeholder="Country of the museum.." v-model="form.country">
       </div>
     </div>
@@ -22,7 +22,7 @@
       <div class="col-25">
         <label for="lname">Ciutat:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <input type="text" id="city" name="city" placeholder="City of the museum.." v-model="form.city">
       </div>
     </div>
@@ -30,7 +30,7 @@
       <div class="col-25">
         <label for="lname">Adreça:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <input type="text" id="address" name="address" placeholder="Address of the museum.." v-model="form.address">
       </div>
     </div>
@@ -38,64 +38,63 @@
       <div class="col-25">
         <label for="subject">Descripció Català:</label>
       </div>
-    <div class="col-25">
-        <textarea id="ca" name="ca" placeholder="Description in Catalan" style="height:70px" v-model="form.ca"></textarea>
+    <div class="col-75">
+        <textarea id="ca" name="ca" placeholder="Description in Catalan" style="height:40px" v-model="form.ca"></textarea>
       </div>
     </div>
     <div class="row">
       <div class="col-25">
         <label for="subject">Descripció Castellà:</label>
       </div>
-    <div class="col-25">
-        <textarea id="es" name="es" placeholder="Description in Spanish" style="height:70px" v-model="form.es"></textarea>
+    <div class="col-75">
+        <textarea id="es" name="es" placeholder="Description in Spanish" style="height:40px" v-model="form.es"></textarea>
       </div>
     </div>
     <div class="row">
       <div class="col-25">
         <label for="subject">Descripció Anglès:</label>
       </div>
-    <div class="col-25">
-        <textarea id="en" name="en" placeholder="Description in English" style="height:70px" v-model="form.en"></textarea>
+    <div class="col-75">
+        <textarea id="en" name="en" placeholder="Description in English" style="height:40px" v-model="form.en"></textarea>
       </div>
     </div>
     <div class="row">
       <div class="col-25">
         <label for="subject">Restriccions Català:</label>
       </div>
-    <div class="col-25">
-        <textarea id="ca" name="ca" placeholder="Restrictions in Catalan" style="height:70px" v-model="form.restrictions.ca"></textarea>
+    <div class="col-75">
+        <textarea id="ca" name="ca" placeholder="Restrictions in Catalan" style="height:40px" v-model="form.restrictions.ca"></textarea>
       </div>
     </div>
     <div class="row">
       <div class="col-25">
         <label for="subject">Restriccions Castellà:</label>
       </div>
-    <div class="col-25">
-        <textarea id="ca" name="ca" placeholder="Restrictions in Spanish" style="height:70px" v-model="form.restrictions.es"></textarea>
+    <div class="col-75">
+        <textarea id="ca" name="ca" placeholder="Restrictions in Spanish" style="height:40px" v-model="form.restrictions.es"></textarea>
       </div>
     </div>
     <div class="row">
       <div class="col-25">
         <label for="subject">Restriccions Anglès:</label>
       </div>
-    <div class="col-25">
-        <textarea id="ca" name="ca" placeholder="Restrictions in English" style="height:70px" v-model="form.restrictions.en"></textarea>
+    <div class="col-75">
+        <textarea id="ca" name="ca" placeholder="Restrictions in English" style="height:30px" v-model="form.restrictions.en"></textarea>
       </div>
     </div>
-    <button class="submit">Crear Museu</button>
      <div class="row">
       <div class="col-25">
         <label for="subject">Foto:</label>
       </div>
-    <div class="col-25">
+    <div class="col-75">
         <input type="file" accept="image/*" id="img" v-on:input="previewFile($event)" >
       </div>
     </div>
+    <button class="submit">Crear Museu</button>
   </form><br><br>
   <div v-if="this.status.name != undefined">
     Museu creat correctament
-  </div>
-  
+  </div>  
 </div>
 </template>
 
