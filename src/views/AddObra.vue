@@ -1,76 +1,13 @@
 <template>
-  <div class="view-container">
-    <div id="form">
-        
-      <form v-on:submit.prevent="post">
-        <div class="row">
-          <div>
-            <label for="fname">Títol:</label>
-          </div>
-          <div>
-            <input type="text" id="title" name="title" placeholder="Masterpice title.." v-model="form.title">
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label for="fname">Autor:</label>
-          </div>
-          <div>
-            <input type="text" id="author" name="author" placeholder="Author Name.." v-model="form.author">
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label for="fname">Type:</label>
-          </div>
-          <div>
-            <input type="text" id="type" name="type" placeholder="Type of the masterpiece..." v-model="form.type">
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label for="fname">Score:</label>
-          </div>
-          <div>
-            <input type="text" id="score" name="score" placeholder="Type of the masterpiece..." v-model="form.score">
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label for="subject">Descripció Català:</label>
-          </div>
-        <div>
-            <textarea id="ca" name="ca" placeholder="Description in Catalan" style="height:70px" v-model="form.ca"></textarea>
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label for="subject">Descripció Castellà:</label>
-          </div>
-        <div>
-            <textarea id="es" name="es" placeholder="Description in Spanish" style="height:70px" v-model="form.es"></textarea>
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label for="subject">Descripció Anglès:</label>
-          </div>
-        <div>
-            <textarea id="en" name="en" placeholder="Description in English" style="height:70px" v-model="form.en"></textarea>
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label for="subject">Foto:</label>
-          </div>
-        <div>
-              <input type="file" accept="image/*" id="foto">
-          </div>
-        </div>
-        <button class="submit">Crear Obra</button>
-      </form><br><br>
-      <div v-if="this.status.name != undefined">
-        Obra creada correctament
+<div id="form">
+    
+    <form v-on:submit.prevent="post">
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">Titiol:</label>
+      </div>
+      <div class="col-25">
+        <input type="text" id="title" name="title" placeholder="Masterpice title.." v-model="form.title">
       </div>
     </div>
     <div class="row">
@@ -134,6 +71,7 @@
   <div v-if="this.status.name != undefined">
     Obra creada correctament
   </div>
+</div>
 </template>
 
 
@@ -250,5 +188,7 @@ label {
   display: table;
   clear: both;
 }
+
+
 
 </style>

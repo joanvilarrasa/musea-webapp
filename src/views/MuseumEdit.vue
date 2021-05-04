@@ -93,6 +93,7 @@
     <button class="submit">Editar Museu</button>
   </form><br><br>
 </div>
+</div>
 </template>
 
 

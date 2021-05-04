@@ -49,6 +49,7 @@
         <input type="file" accept="image/*" id="img" v-on:input="previewFile($event)" >
       </div>
     </div>
+    </form>
   </div>
 </template>
 
