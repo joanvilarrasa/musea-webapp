@@ -1,40 +1,37 @@
 <template>
-  <div class="Obres">
-    <v-app>
-    <v-simple-table dark
-    class="elevation-1">
-    
-        <table>
-            <thead>
-                <tr>
-                    <th>Nom Obres</th> 
-                    <th>Autor</th> 
-                    <th> Puntuació </th> 
-                    <th> Imatge </th> 
-                   <!-- <th> Manage </th>-->
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="obra in this.obres" :key="obra.id">
-                    <!--<router-link :to="{ name: 'obraInfo', params: { id_museu: museum.id }}"> </router-link>-->
-                    <td> {{obra.title}}  </td>
-                    <td> {{obra.author}} </td>
-                    <td> {{obra.score}} </td>
-                    <td><v-img lazy-src="" max-height="100" max-width="150" :src="obra.image"></v-img></td>
-                   <!-- <td> <button class="delete" v-on:click="esborrarObra(obra.id)"> Delete</button> </td> -->
-                </tr>
-            </tbody>  
-        </table>
-    
-    </v-simple-table>
-    <button class="submit">
-        <router-link :to="{ name: 'AddObra', params: { id_museu: this.$route.params.id_museu, id_expo: this.$route.params.id_exposition}}">
-        Add Obra
-        </router-link>
-    </button>
-    </v-app>
-    
-  </div>
+    <div class="view-container">
+        <div class="table-container">
+            <v-simple-table dark class="elevation-1">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nom Obres</th> 
+                            <th>Autor</th> 
+                            <th> Puntuació </th> 
+                            <th> Imatge </th> 
+                        <!-- <th> Manage </th>-->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="obra in this.obres" :key="obra.id">
+                            <!--<router-link :to="{ name: 'obraInfo', params: { id_museu: museum.id }}"> </router-link>-->
+                            <td> {{obra.title}}  </td>
+                            <td> {{obra.author}} </td>
+                            <td> {{obra.score}} </td>
+                            <td><v-img lazy-src="" max-height="100" max-width="150" :src="obra.image"></v-img></td>
+                        <!-- <td> <button class="delete" v-on:click="esborrarObra(obra.id)"> Delete</button> </td> -->
+                        </tr>
+                    </tbody>  
+                </table>
+            
+            </v-simple-table>
+            <button class="submit">
+                <router-link :to="{ name: 'AddObra', params: { id_museu: this.$route.params.id_museu, id_expo: this.$route.params.id_exposition}}">
+                Add Obra
+                </router-link>
+            </button>
+        </div>
+    </div>
 </template>
 
 <script>

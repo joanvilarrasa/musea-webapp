@@ -1,40 +1,39 @@
 <template>
-  <div class="museums">
-    <v-app>
-    <v-simple-table dark
-    class="elevation-1">
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Nom Museu</th>
-                    <th> Adreça </th>
-                    <th> Ciutat </th>
-                    <th> Pais </th>
-                    <th> Nombre d'obres </th> 
-                    <th> Imatge </th> 
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="museum in this.museums" :key="museum.id">
-                    <td> <router-link :to="{ name: 'expositions', params: { id_museu: museum._id }}" replace> {{museum.name}} </router-link> </td>
-                    <td> {{museum.address}} </td>
-                    <td> {{museum.city}} </td>
-                    <td> {{museum.country}} </td>
-                    <td> Under Construction </td>
-                    <td><v-img lazy-src="" max-height="150" max-width="250" :src="museum.image"></v-img></td>
-                </tr>
-            </tbody>  
-        </table>
-    </v-simple-table>
-    <button class="submit">
-        <router-link to="/museums/add">
-        Add Museum
-        </router-link>
-    </button>
-    </v-app>
-    
-  </div>
+    <div class="view-container">
+        <div class="table-container">
+            <v-simple-table dark
+            class="elevation-1">
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nom Museu</th>
+                            <th> Adreça </th>
+                            <th> Ciutat </th>
+                            <th> Pais </th>
+                            <th> Nombre d'obres </th> 
+                            <th> Imatge </th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="museum in this.museums" :key="museum.id">
+                            <td> <router-link :to="{ name: 'expositions', params: { id_museu: museum._id }}" replace> {{museum.name}} </router-link> </td>
+                            <td> {{museum.address}} </td>
+                            <td> {{museum.city}} </td>
+                            <td> {{museum.country}} </td>
+                            <td> Under Construction </td>
+                            <td><v-img lazy-src="" max-height="150" max-width="250" :src="museum.image"></v-img></td>
+                        </tr>
+                    </tbody>  
+                </table>
+            </v-simple-table>
+            <button class="submit">
+                <router-link to="/museums/add">
+                Add Museum
+                </router-link>
+            </button>
+        </div>
+    </div>
 </template>
 
 <script>
