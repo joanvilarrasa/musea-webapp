@@ -1,7 +1,7 @@
 <template>
     <div class="view-container">
         <div class="table-container">
-            <v-simple-table dark class="elevation-1">
+            <v-simple-table light fixed-header>
                 <table>
                     <thead>
                         <tr>

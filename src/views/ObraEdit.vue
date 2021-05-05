@@ -1,12 +1,11 @@
 <template>
-<div class="view-container">
   <div id="form">
     <form v-on:submit.prevent="put">
     <div class="row">
       <div class="col-25">
         <label for="fname">Titol:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <label for="fname">{{this.$route.params.obra_titol}}</label>
       </div>
     </div>
@@ -14,7 +13,7 @@
       <div class="col-25">
         <label for="fname">Autor:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <label for="fname">{{this.$route.params.obra_autor}}</label>
       </div>
     </div>
@@ -22,7 +21,7 @@
       <div class="col-25">
         <label for="fname">Type:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <label for="fname">{{this.$route.params.obra_tipus}}</label>
       </div>
     </div>
@@ -30,7 +29,7 @@
       <div class="col-25">
         <label for="fname">Score:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <input type="text" id="score" name="score" placeholder="Score of the masterpiece..." v-model="form.score">
       </div>
     </div>
@@ -38,7 +37,7 @@
       <div class="col-25">
         <label for="subject">Descripció Català:</label>
       </div>
-    <div class="col-25">
+    <div class="col-75">
         <textarea id="ca" name="ca" placeholder="Description in Catalan" style="height:70px" v-model="form.ca"></textarea>
       </div>
     </div>
@@ -46,7 +45,7 @@
       <div class="col-25">
         <label for="subject">Descripció Castellà:</label>
       </div>
-    <div class="col-25">
+    <div class="col-75">
         <textarea id="es" name="es" placeholder="Description in Spanish" style="height:70px" v-model="form.es"></textarea>
       </div>
     </div>
@@ -54,12 +53,12 @@
       <div class="col-25">
         <label for="subject">Descripció Anglès:</label>
       </div>
-    <div class="col-25">
+    <div class="col-75">
         <textarea id="en" name="en" placeholder="Description in English" style="height:70px" v-model="form.en"></textarea>
       </div>
     </div>
     <div class="row">
-      <div class="col-25">
+      <div class="col-75">
         <label for="subject">Foto:</label>
       </div>
     <div class="col-25">
@@ -69,7 +68,6 @@
     </form>
   </div>
 
-</div>
 </template>
 
 
@@ -96,6 +94,7 @@ export default {
     },
     methods: {
         put: function(){
+          if(this.image_aux!=null){
              let uploader= new Uploader();
             const data = {
               contentType: this.image_aux.type,
@@ -114,6 +113,18 @@ export default {
                       }
                   })
             })
+          }
+          else{
+            this.form.score=parseFloat(this.form.score)         
+              let params = [ this.form, this.$route.params.id_museu, this.$route.params.id_exposition, this.$route.params.id_obra]
+              DataProvider("MUSEUMS", "OBRA_EDIT",  params).then((res) => {
+                      this.status = res;
+                      if(this.status!=null){
+                        this.$router.push({ name: "obres",  params: { id_museu: this.$route.params.id_museu, id_exposition: this.$route.params.id_exposition}})
+                      }
+                  })
+
+          }
         },
         previewFile: function(event) {
           this.image_aux= event.target.files[0];
@@ -145,7 +156,7 @@ label {
 
 /* Style the submit button */
 .submit {
-  background-color: #4CAF50;
+  background-color:rgb(106, 118, 171);
   color: white;
   padding: 12px 20px;
   border: none;
@@ -155,6 +166,8 @@ label {
 }
 #form{
  margin-top: 25px;
+   margin-left: 10%;
+
  }
 
 /* Style the container */
@@ -184,7 +197,6 @@ label {
   display: table;
   clear: both;
 }
-
 
 
 </style>

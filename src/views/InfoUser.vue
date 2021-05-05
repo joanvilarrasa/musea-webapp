@@ -4,7 +4,7 @@
     <div class="row">
          <div class="col-25">
          </div>
-        <div class="col-25">
+        <div class="col-75">
             <v-img lazy-src="" max-height="150" max-width="250" :src="user.profilePic"></v-img>
         </div>
     </div>
@@ -12,7 +12,7 @@
       <div class="col-25">
         <label for="fname">Username:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <label for="fname">{{this.$route.params.userId}}</label>
       </div>
     </div>
@@ -20,7 +20,7 @@
       <div class="col-25">
         <label for="fname">Premium:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <label for="fname">{{this.user.premium}}</label>
       </div>
     </div>
@@ -28,7 +28,7 @@
       <div class="col-25">
         <label for="fname">Points:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <label for="fname">{{this.user.points}}</label>
       </div>
     </div>
@@ -36,7 +36,7 @@
       <div class="col-25">
         <label for="fname">Full Name:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <input type="text" id="score" name="score" v-bind:placeholder="this.user.name" v-model="form.name">
       </div>
     </div>
@@ -44,7 +44,7 @@
       <div class="col-25">
         <label for="fname">Bio:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <input type="text" id="score" name="score" v-bind:placeholder="this.user.bio" v-model="form.bio">
       </div>
     </div>
@@ -52,7 +52,7 @@
       <div class="col-25">
         <label for="fname">Canviar foto:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <input type="file" accept="image/*" id="img" v-on:input="previewFile($event)" >
       </div>
     </div>
@@ -93,6 +93,7 @@ export default ({
 
         },
         put: function(){      
+          if(this.image_aux!=null){
              let uploader= new Uploader();
             const data = {
               contentType: this.image_aux.type,
@@ -111,6 +112,16 @@ export default ({
                       }
                   })
             })
+          }
+          else{
+            let params = [ this.form, this.user.userId]
+              DataProvider("USERS", "USER_EDIT",  params).then((res) => {
+                      console.log(res)
+                      if(res!=null){
+                        this.$router.push({ name: "Usuaris"})
+                      }
+                  })
+          }
         
         },
          previewFile: function(event) {
@@ -145,7 +156,7 @@ label {
 
 /* Style the submit button */
 .submit {
-  background-color: #4CAF50;
+  background-color: rgb(106, 118, 171);
   color: white;
   padding: 12px 20px;
   border: none;

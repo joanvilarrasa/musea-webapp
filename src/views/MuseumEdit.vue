@@ -6,7 +6,7 @@
       <div class="col-25">
         <label for="fname">Nom Museum:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <label for="fname">{{this.$route.params.museum_nom}}</label>
       </div>
     </div>
@@ -14,7 +14,7 @@
       <div class="col-25">
         <label for="fname">Ciutat:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <label for="fname">{{this.$route.params.museum_city}}</label>
       </div>
     </div>
@@ -22,7 +22,7 @@
       <div class="col-25">
         <label for="fname">Adreça:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <label for="fname">{{this.$route.params.museum_adresss}}</label>
       </div>
     </div>
@@ -30,7 +30,7 @@
       <div class="col-25">
         <label for="fname">Pais:</label>
       </div>
-      <div class="col-25">
+      <div class="col-75">
         <label for="fname">{{this.$route.params.museum_country}}</label>
       </div>
     </div>
@@ -38,7 +38,7 @@
       <div class="col-25">
         <label for="subject">Descripció Català:</label>
       </div>
-    <div class="col-25">
+    <div class="col-75">
         <textarea id="ca" name="ca" placeholder="Description in Catalan" style="height:70px" v-model="form.ca"></textarea>
       </div>
     </div>
@@ -46,7 +46,7 @@
       <div class="col-25">
         <label for="subject">Descripció Castellà:</label>
       </div>
-    <div class="col-25">
+    <div class="col-75">
         <textarea id="es" name="es" placeholder="Description in Spanish" style="height:70px" v-model="form.es"></textarea>
       </div>
     </div>
@@ -54,7 +54,7 @@
       <div class="col-25">
         <label for="subject">Descripció Anglès:</label>
       </div>
-    <div class="col-25">
+    <div class="col-75">
         <textarea id="en" name="en" placeholder="Description in English" style="height:70px" v-model="form.en"></textarea>
       </div>
     </div>
@@ -62,7 +62,7 @@
       <div class="col-25">
         <label for="subject">Restriccions Català:</label>
       </div>
-    <div class="col-25">
+    <div class="col-75">
         <textarea id="ca" name="ca" placeholder="Restrictions in Catalan" style="height:70px" v-model="form.restrictions.ca"></textarea>
       </div>
     </div>
@@ -70,7 +70,7 @@
       <div class="col-25">
         <label for="subject">Restriccions Castellà:</label>
       </div>
-    <div class="col-25">
+    <div class="col-75">
         <textarea id="ca" name="ca" placeholder="Restrictions in Spanish" style="height:70px" v-model="form.restrictions.es"></textarea>
       </div>
     </div>
@@ -78,7 +78,7 @@
       <div class="col-25">
         <label for="subject">Restriccions Anglès:</label>
       </div>
-    <div class="col-25">
+    <div class="col-75">
         <textarea id="ca" name="ca" placeholder="Restrictions in English" style="height:70px" v-model="form.restrictions.en"></textarea>
       </div>
     </div>
@@ -86,7 +86,7 @@
       <div class="col-25">
         <label for="subject">Foto:</label>
       </div>
-    <div class="col-25">
+    <div class="col-75">
         <input type="file" accept="image/*" id="img" v-on:input="previewFile($event)" >
       </div>
     </div>
@@ -124,6 +124,7 @@ export default {
     },
     methods: {
         put: function(){
+          if(this.image_aux!=null){
             let uploader= new Uploader();
             const data = {
               contentType: this.image_aux.type,
@@ -141,6 +142,17 @@ export default {
                       }
                   })
             })
+          }
+          else{
+            let params = [ this.form, this.$route.params.id_museu]
+              DataProvider("MUSEUMS", "MUSEUM_EDIT",  params).then((res) => {
+                      this.status = res;
+                      if(this.status!=null){
+                        this.$router.push({ name: "Museums"})
+                      }
+                  })
+
+          }
         },
          previewFile: function(event) {
           this.image_aux= event.target.files[0];
@@ -172,7 +184,7 @@ label {
 
 /* Style the submit button */
 .submit {
-  background-color: #4CAF50;
+  background-color: rgb(106, 118, 171);
   color: white;
   padding: 12px 20px;
   border: none;

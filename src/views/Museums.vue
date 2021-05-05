@@ -1,7 +1,7 @@
 <template>
     <div class="view-container">
         <div class="table-container">
-            <v-simple-table dark
+            <v-simple-table fixed-header light
             class="elevation-1">
                 
                 <table>
@@ -74,7 +74,8 @@ export default {
 table {
    overflow: visible;
   width: 100%;
-  border: 1px solid white;
+  border: 20px solid white;
+  
 }
 td {
     width: 20%;
@@ -84,7 +85,7 @@ th {
   height: 15px;
 }
 .submit {
-  background-color: #4CAF50;
+  background-color:rgb(106, 118, 171);
   color: white;
   padding: 12px 20px;
   border: none;

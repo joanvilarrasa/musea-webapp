@@ -1,7 +1,7 @@
 <template>
     <div class="view-container">
         <div class="table-container">
-            <v-simple-table dark>
+            <v-simple-table light fixed-header>
                 <table>
                     <thead>
                         <tr>
@@ -16,7 +16,7 @@
                             <td> <router-link :to="{ name: 'InfoUser', params: { userId: user.username }}"> {{user.username}}</router-link> </td>
                             <td> {{user.fullName}} </td>
                             <td> {{user.premium}} </td>
-                            <td> <button class="delete" v-on:click="esborrarUser(user._id)">  <router-link :to="{ name: 'Usuaris'}"><v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/></router-link></button><button class="delete"> <router-link :to="{ name: 'InfoUser', params: { userId: user.username }}"> <v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </router-link></button> </td>
+                            <td> <button class="delete" v-on:click="esborrarUser(user.username)">  <router-link :to="{ name: 'Usuaris'}"><v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/></router-link></button><button class="delete"> <router-link :to="{ name: 'InfoUser', params: { userId: user.username }}"> <v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </router-link></button> </td>
                         </tr>
                     </tbody>  
                 </table>
@@ -48,7 +48,6 @@ export default {
                 console.log(res)
             })
              this.obtenir_users();
-            location.reload()
         }
     },
     mounted() {

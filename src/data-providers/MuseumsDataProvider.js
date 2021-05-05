@@ -15,10 +15,16 @@ export const MuseumsDataProvider = (type,params,urlAPIMuseums) => {
         
         case "MUSEUMS_CREATE":
             var uri2 = urlAPIMuseums + '/museums';
+            var restrictions={
+                ca: params.restrictions.ca,
+                es: params.restrictions.es,
+                en: params.restrictions.en,
+            };
             var options2 = {
                 method: 'POST',
                 url: uri2,
                 params: params,
+                data: {restrictions},
             }
             return axios(options2).then((res) => {return res.data});
 
@@ -35,14 +41,21 @@ export const MuseumsDataProvider = (type,params,urlAPIMuseums) => {
         
         case "MUSEUM_EDIT":
             var uri2 = urlAPIMuseums + '/museums/'+params[1];
+            var restrictions={
+                ca: params[0].restrictions.ca,
+                es: params[0].restrictions.es,
+                en: params[0].restrictions.en,
+            };
             var options2 = {
                 method: 'PUT',
                 url: uri2,
                 params: params[0],
-                data: params[0].restrictions
+                data: {restrictions},
             }
             console.log(uri2)
-            return axios(options2).then((res) => {return res.data});
+            return axios(options2).then((res) => {
+                 
+                return res.data});
 
         case "EXPOSITIONS":
             var uri3 = urlAPIMuseums + '/museums/'+params;

@@ -99,6 +99,7 @@ export default {
     },
     methods: {
         post: function(){
+          if(this.image_aux!=null){
             let uploader= new Uploader();
             const data = {
               contentType: this.image_aux.type,
@@ -119,6 +120,20 @@ export default {
                     }
                 })
             })
+          }
+          else{
+            this.form.score=parseFloat(this.form.score)         
+            let params = [ this.form,
+                            this.$route.params.id_museu, this.$route.params.id_exposition]
+            console.log(params)      
+            DataProvider("MUSEUMS", "OBRA_CREATE",  params).then((res) => {
+                    this.status = res;
+                    if(this.status!=null){
+                      this.$router.push({ name: "obres",  params: { id_museu: this.$route.params.id_museu, id_exposition: this.$route.params.id_exposition }})
+                    }
+                    })
+            }
+          
         },
         previewFile: function(event) {
           this.image_aux= event.target.files[0];
@@ -149,7 +164,7 @@ label {
 
 /* Style the submit button */
 .submit {
-  background-color: #4CAF50;
+  background-color:rgb(106, 118, 171);
   color: white;
   padding: 12px 20px;
   border: none;
@@ -159,6 +174,8 @@ label {
 }
 #form{
  margin-top: 25px;
+   margin-left: 10%;
+
  }
 
 /* Style the container */

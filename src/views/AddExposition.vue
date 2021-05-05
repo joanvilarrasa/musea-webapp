@@ -77,6 +77,7 @@ export default {
     },
     methods: {
         post: function(){
+          if(this.image_aux!=null){
             let uploader= new Uploader();
             const data = {
               contentType: this.image_aux.type,
@@ -95,6 +96,17 @@ export default {
                       this.$router.push({ name: "expositions",  params: { id_museu: this.$route.params.id_museu}})
                   })
             })
+          }
+          else{
+            let params = [ this.form,
+                              this.$route.params.id_museu]
+              DataProvider("MUSEUMS", "EXPO_CREATE",  params).then((res) => {
+                      this.status = res;
+                      console.log(this.status)
+                      if(this.status!=null)
+                      this.$router.push({ name: "expositions",  params: { id_museu: this.$route.params.id_museu}})
+              })
+          }
         },
          previewFile: function(event) {
           this.image_aux= event.target.files[0];
@@ -123,6 +135,8 @@ input[type=text], select, textarea{
 }
 #form{
  margin-top: 25px;
+  margin-left: 10%;
+
  }
 
 /* Style the label to display next to the inputs */
@@ -133,7 +147,7 @@ label {
 
 /* Style the submit button */
 .submit {
-  background-color: #4CAF50;
+  background-color: rgb(106, 118, 171);
   color: white;
   padding: 12px 20px;
   border: none;

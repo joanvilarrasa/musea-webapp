@@ -39,7 +39,7 @@
         <label for="subject">Descripció Català:</label>
       </div>
     <div class="col-75">
-        <textarea id="ca" name="ca" placeholder="Description in Catalan" style="height:40px" v-model="form.ca"></textarea>
+        <textarea id="ca" name="ca" placeholder="Description in Catalan"  v-model="form.ca"></textarea>
       </div>
     </div>
     <div class="row">
@@ -47,7 +47,7 @@
         <label for="subject">Descripció Castellà:</label>
       </div>
     <div class="col-75">
-        <textarea id="es" name="es" placeholder="Description in Spanish" style="height:40px" v-model="form.es"></textarea>
+        <textarea id="es" name="es" placeholder="Description in Spanish" v-model="form.es"></textarea>
       </div>
     </div>
     <div class="row">
@@ -55,7 +55,7 @@
         <label for="subject">Descripció Anglès:</label>
       </div>
     <div class="col-75">
-        <textarea id="en" name="en" placeholder="Description in English" style="height:40px" v-model="form.en"></textarea>
+        <textarea id="en" name="en" placeholder="Description in English"  v-model="form.en"></textarea>
       </div>
     </div>
     <div class="row">
@@ -63,7 +63,7 @@
         <label for="subject">Restriccions Català:</label>
       </div>
     <div class="col-75">
-        <textarea id="ca" name="ca" placeholder="Restrictions in Catalan" style="height:40px" v-model="form.restrictions.ca"></textarea>
+        <textarea id="ca" name="ca" placeholder="Restrictions in Catalan"  v-model="form.restrictions.ca"></textarea>
       </div>
     </div>
     <div class="row">
@@ -71,7 +71,7 @@
         <label for="subject">Restriccions Castellà:</label>
       </div>
     <div class="col-75">
-        <textarea id="ca" name="ca" placeholder="Restrictions in Spanish" style="height:40px" v-model="form.restrictions.es"></textarea>
+        <textarea id="ca" name="ca" placeholder="Restrictions in Spanish"  v-model="form.restrictions.es"></textarea>
       </div>
     </div>
     <div class="row">
@@ -79,7 +79,7 @@
         <label for="subject">Restriccions Anglès:</label>
       </div>
     <div class="col-75">
-        <textarea id="ca" name="ca" placeholder="Restrictions in English" style="height:30px" v-model="form.restrictions.en"></textarea>
+        <textarea id="ca" name="ca" placeholder="Restrictions in English"  v-model="form.restrictions.en"></textarea>
       </div>
     </div>
      <div class="row">
@@ -129,7 +129,7 @@ export default {
     },
     methods: {
         post:  function(){
-          //PENDING: AVOID ERRORS ON EXTREME CASES --> if no photo? avoid loading aws
+          if(this.image_aux!=null){
             let uploader= new Uploader();
             const data = {
               contentType: this.image_aux.type,
@@ -148,9 +148,18 @@ export default {
                     this.$router.push({ name: "Museums"})
                   }
               })
-
-
             })
+          }
+          else{
+             let params = this.form;
+              DataProvider("MUSEUMS", "MUSEUMS_CREATE",  params).then((res) => {
+                  this.status = res;
+                  console.log(this.status)
+                  if(this.status.name!=null){
+                    this.$router.push({ name: "Museums"})
+                  }
+              })
+          }
             
             /*
             let params = this.form;
@@ -193,7 +202,7 @@ label {
 
 /* Style the submit button */
 .submit {
-  background-color: #4CAF50;
+  background-color: rgb(106, 118, 171);
   color: white;
   padding: 12px 20px;
   border: none;
@@ -224,6 +233,7 @@ label {
 }
 #form{
  margin-top: 25px;
+ margin-left: 10%;
  }
 
 /* Clear floats after the columns */
