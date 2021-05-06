@@ -16,6 +16,9 @@ import ObraEdit from '../views/ObraEdit.vue'
 import ExpoEdit from '../views/ExpoEdit.vue'
 import MuseumEdit from '../views/MuseumEdit.vue'
 import InfoUser from '../views/InfoUser.vue'
+import Quizzes from '../views/Quizzes.vue'
+import AddQuizz from '../views/AddQuizz.vue'
+import EditQuizz from '../views/EditQuizz.vue'
 Vue.use(VueRouter)
 
 const ifAuthenticated = (to, from, next) => {
@@ -100,6 +103,24 @@ const routes = [
     path: '/museums/:id_museu/:id_exposition/:id_obra/edit',
     name: 'ObraEdit',
     component: ObraEdit,
+    beforeEnter: ifAuthenticated,
+  },
+  {
+    path: '/quizzes',
+    name: 'Quizzes',
+    component: Quizzes,
+    beforeEnter: ifAuthenticated,
+  },
+  {
+    path: '/quizzes/add',
+    name: 'AddQuizz',
+    component: AddQuizz,
+    beforeEnter: ifAuthenticated,
+  },
+  {
+    path: '/quizzes/:id_quizz',
+    name: 'EditQuizz',
+    component: EditQuizz,
     beforeEnter: ifAuthenticated,
   },
   {

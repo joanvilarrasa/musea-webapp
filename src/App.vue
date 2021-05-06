@@ -8,7 +8,7 @@
             <v-tab link to="/"><v-icon class="tab-menu-icon">mdi-home</v-icon>Home</v-tab>
             <v-tab link to="/usuaris"><v-icon class="tab-menu-icon">mdi-account</v-icon>Users</v-tab>
             <v-tab link to="/museums"><v-icon class="tab-menu-icon">mdi-bank</v-icon>Museums</v-tab>
-            <v-tab link to="/obres"><v-icon class="tab-menu-icon">mdi-palette</v-icon>Obres</v-tab>
+            <v-tab link to="Quizzes"><v-icon class="tab-menu-icon">mdi-palette</v-icon>Quizzes</v-tab>
           </v-tabs>
         </template>
         <v-spacer></v-spacer>
@@ -55,6 +55,8 @@
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+  overflow: auto;
+  padding-bottom: 2rem;
 }
 
 .table-container{
