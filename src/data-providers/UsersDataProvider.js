@@ -29,7 +29,7 @@ export const UsersDataProvider = (type,params,urlAPIMuseums) => {
             var options2 = {
                 method: 'DELETE',
                 url: uri2,
-                params: params,
+               
             }
             return axios(options2).then((res) => {return res.data});
 
