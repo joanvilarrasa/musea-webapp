@@ -2,6 +2,7 @@ import {AuthDataProvider} from './AuthDataProvider';
 import {MuseumsDataProvider} from './MuseumsDataProvider';
 import{QuizzesDataProvider} from './QuizzesDataProvider';
 import{UsersDataProvider} from './UsersDataProvider';
+import{ QuizzesDataProvider } from './QuizzesDataProvider';
 //const urlAPIGateway = process.env.VUE_APP_API;
 
 const urlAPIAuth = "https://musea-authorization-server.herokuapp.com"
@@ -23,6 +24,10 @@ export const DataProvider = (providerType, type, params) => {
 
         case "AUTH":
             data = AuthDataProvider(type,params,urlAPIAuth);
+            break;
+
+        case "QUIZZES":
+            data = QuizzesDataProvider(type,params,urlAPIMuseums);
             break;
 
         default:

@@ -81,7 +81,7 @@ export default {
               fileName: this.image_aux.name,
               file: this.image_aux             
             }
-            uploader.uploadImage(data, "/expositions ").then((res)=>{
+            uploader.uploadImage(data, "/expositions").then((res)=>{
               this.form.image=res.Location
               console.log(this.form.image) 
               console.log(this.$route.params.id_exposition)
