@@ -152,7 +152,7 @@ export default {
       }
     },
     methods: {
-        post:  function(){
+        post: function(){
           this.form.points=parseFloat(this.form.points)
           this.form.answers=[];
           this.form.answers.push(this.answer1)
@@ -175,9 +175,9 @@ export default {
               DataProvider("QUIZZES", "QUIZZES_CREATE", params).then((res) => {
                   this.status = res;
                   console.log(this.status)
-                  if(this.status.name!=null){
-                    this.$router.push({ name: "Quizzes"})
-                  }
+                  
+                  this.$router.push({ name: "Quizzes"})
+                  
               })
             })
           }
@@ -186,26 +186,15 @@ export default {
               DataProvider("QUIZZES", "QUIZZES_CREATE",  params).then((res) => {
                   this.status = res;
                   console.log(this.status)
-                  if(this.status.name!=null){
-                    this.$router.push({ name: "Quizzes"})
-                  }
+                  
+                  this.$router.push({ name: "Quizzes"})
+                  
               })
           }
-            
-            /*
-            let params = this.form;
-            DataProvider("MUSEUMS", "MUSEUMS_CREATE",  params).then((res) => {
-                    this.status = res;
-                    console.log(this.status)
-                    if(this.status.name!=null){
-                      this.$router.push({ name: "Museums"})
-                    }
-                })*/
         },
         previewFile: function(event) {
           this.image_aux= event.target.files[0];
-          console.log(this.image_aux)
-          
+          console.log(this.image_aux)     
         },
       
 
