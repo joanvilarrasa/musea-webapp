@@ -14,14 +14,14 @@ export const QuizzesDataProvider = (type,params,urlAPIMuseums) => {
 
         case "QUIZZES_CREATE":
             var uri2 = urlAPIMuseums + '/quizzes';
-            var body={};
+            var body={params};
             var options2 = {
                 method: 'POST',
                 url: uri2,
-                params: params,
                 data: {body},
             }
-            return axios(options2).then((res) => {return res.data});
+            return uri2
+            //return axios(options2).then((res) => {return res.data});
 
         case "QUIZZES_DELETE":
             var uri2 = urlAPIMuseums + '/quizzes/'+ params;
