@@ -1,5 +1,6 @@
 import {AuthDataProvider} from './AuthDataProvider';
 import {MuseumsDataProvider} from './MuseumsDataProvider';
+import{QuizzesDataProvider} from './QuizzesDataProvider';
 import{UsersDataProvider} from './UsersDataProvider';
 //const urlAPIGateway = process.env.VUE_APP_API;
 

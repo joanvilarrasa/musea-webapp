@@ -43,7 +43,37 @@ export const UsersDataProvider = (type,params,urlAPIMuseums) => {
             console.log(uri2)
             return axios(options2).then((res) => {return res.data});
         
+        case "USER_LIKES":
+            var uri = urlAPIMuseums+'/users/'+params+'/likes';
+            var options = {
+                method: 'GET',
+                url: uri,
+            }
+            return axios(options).then((res) => { return res.data });
         
+        case "USER_FAVS":
+            var uri = urlAPIMuseums+'/users/'+params+'/favourites';
+            var options = {
+                method: 'GET',
+                url: uri,
+            }
+            return axios(options).then((res) => { return res.data });
+        
+        case "USER_VISITED":
+            var uri = urlAPIMuseums+'/users/'+params+'/visited';
+            var options = {
+                method: 'GET',
+                url: uri,
+            }
+            return axios(options).then((res) => { return res.data });
+
+        case "USER_POINTS":
+            var uri = urlAPIMuseums+'/users/'+params+'/points';
+            var options = {
+                method: 'GET',
+                url: uri,
+            }
+            return axios(options).then((res) => { return res.data });
 
         default:
             console.log(params);

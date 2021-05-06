@@ -21,6 +21,7 @@ export default {
             totalExpositions: 0,
             totalPieces: 0,
             totalUsers: 0,
+            totalQuizzes: 0,
         }
     }),
     methods: {
@@ -40,14 +41,28 @@ export default {
             })
             DataProvider("USERS", "USERS").then((res) => {
                 this.totalChartData.totalUsers += res.users.length;
+                res.users.forEach((user) => {
+                    DataProvider("USERS", "USER_LIKES", user.username).then((res) => {
+                        //console.log(res.likes);
+                    })
+                    DataProvider("USERS", "USER_FAVS", user.username).then((res) => {
+                        //console.log(res.favourites);
+                    })
+                    DataProvider("USERS", "USER_VISITED", user.username).then((res) => {
+                        //console.log(res.visited);
+                    })
+                })
+            })
+            DataProvider("QUIZZES", "QUIZZES").then((res) => {
+                this.totalChartData.totalQuizzes += res.quizzes.length;
             })
         },
         buildChartData: function(totalsData) {
             let newChartData = {
-                xcategories: ["Museus", "Exposicions", "Obres", "Usuaris"],
+                xcategories: ["Museus", "Exposicions", "Obres", "Quizzes", "Usuaris"],
                 series: [{
                     name: 'total',
-                    data: [totalsData.totalMuseums, totalsData.totalExpositions, totalsData.totalPieces, totalsData.totalUsers]
+                    data: [totalsData.totalMuseums, totalsData.totalExpositions, totalsData.totalPieces, totalsData.totalQuizzes, totalsData.totalUsers]
                 }]
             }
             return newChartData;
