@@ -14,7 +14,7 @@
                             <th> Resposta 4: </th>
                             <th> Points: </th>
                             <th> Imatge: </th>
-                            <th> Manage </th>
+                            <!--<th> Manage </th>-->
                         </tr>
                     </thead>
                     <tbody>
@@ -26,7 +26,7 @@
                             <td> {{ quizz.answers[3].ca }} </td>
                             <td> {{ quizz.points}}</td>
                             <td><v-img lazy-src="" max-height="100" max-width="200" :src="quizz.image"></v-img></td>
-                            <td> <button class="delete" @click="esborrarQuizz(quizz._id)"> <router-link :to="{ name: 'Quizzes'}"><v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/></router-link></button> <button class="delete"> <router-link :to="{ name: 'EditQuizz', params: { id_quizz: quizz._id, quiz_pregunta: quizz.question, points: quizz.points}}"> <v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </router-link></button> </td>
+                            <!--<td> <button class="delete" @click="esborrarQuizz(quizz._id)"> <router-link :to="{ name: 'Quizzes'}"><v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/></router-link></button> <button class="delete"> <router-link :to="{ name: 'EditQuizz', params: { id_quizz: quizz._id, quiz_pregunta: quizz.question, points: quizz.points}}"> <v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </router-link></button> </td>-->
                         </tr>
                     </tbody>  
                 </table>
