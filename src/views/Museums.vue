@@ -75,7 +75,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 table {
    overflow: visible;
   width: 100%;
