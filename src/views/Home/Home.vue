@@ -12,52 +12,79 @@ export default {
       AppBarChart,
     },
     data: () => ({
-        chartData: {
+        totalChartData: {
             xcategories: [],
             series: [],
         },
-        totalChartData: {
+        museumsChartData: {
+            xcategories: [],
+            series: [],
+        },
+        totalData: {
             totalMuseums: 0,
             totalExpositions: 0,
             totalPieces: 0,
             totalUsers: 0,
             totalQuizzes: 0,
-        }
+        },
+        museumsRepo: [],
+        expositionsRepo: [],
+        piecesRepo: [],
+        usersRepo: [],
+        quizzesRepo: [],
     }),
     methods: {
         getTotals: function(){
             DataProvider("MUSEUMS", "MUSEUMS").then((res) => {
-                this.totalChartData.totalMuseums = res.museums.length;
+                this.totalData.totalMuseums = res.museums.length;
                 res.museums.forEach(museum => {
-                    this.totalChartData.totalExpositions += museum.expositions.length;
+                    this.museumsRepo.push(museum);
+                    this.totalData.totalExpositions += museum.expositions.length;
                     museum.expositions.forEach((expo) => {
                         let ids = [museum._id , expo];                     
                         DataProvider("MUSEUMS", "OBRES", ids).then((res) => {
-                            this.totalChartData.totalPieces += res.exposition.works.length;
-                            this.chartData = this.buildChartData(this.totalChartData);
+                            this.expositionsRepo.push(res.exposition)
+                            this.totalData.totalPieces += res.exposition.works.length;
+                            this.totalChartData = this.buildTotalChartData(this.totalData);
+                            res.exposition.works.forEach(piece => {
+                                this.piecesRepo.push(piece);
+                            });
                         })
                     })
                 });
-            })
-            DataProvider("USERS", "USERS").then((res) => {
-                this.totalChartData.totalUsers += res.users.length;
-                res.users.forEach((user) => {
-                    DataProvider("USERS", "USER_LIKES", user.username).then((res) => {
-                        //console.log(res.likes);
-                    })
-                    DataProvider("USERS", "USER_FAVS", user.username).then((res) => {
-                        //console.log(res.favourites);
-                    })
-                    DataProvider("USERS", "USER_VISITED", user.username).then((res) => {
-                        //console.log(res.visited);
+                DataProvider("USERS", "USERS").then((res) => {
+                    this.totalData.totalUsers += res.users.length;
+                    res.users.forEach((user) => {
+                        this.usersRepo.push(user);
+                        DataProvider("USERS", "USER_LIKES", user.username).then((res) => {
+                            res.likes.forEach((p) => {
+                                let likedPiece = this.piecesRepo.find(piece => piece._id == p.artworkId);
+                                if(likedPiece != undefined) likedPiece.nLikes == undefined ? likedPiece.nLikes = 1 : likedPiece.nLikes++;
+                            })
+                        })
+                        DataProvider("USERS", "USER_FAVS", user.username).then((res) => {
+                            res.favourites.forEach((m) => {
+                                let favMuseum = this.museumsRepo.find(museum => museum._id == m.museumId);
+                                if(favMuseum != undefined) favMuseum.nFavs == undefined ? favMuseum.nFavs = 1 : favMuseum.nFavs++;
+                            })
+                            this.museumsChartData = this.buildMuseumsChartData(this.museumsRepo);
+                        })
+                        DataProvider("USERS", "USER_VISITED", user.username).then((res) => {
+                            res.visited.forEach((m) => {
+                                let visMuseum = this.museumsRepo.find(museum => museum._id == m.museumId);
+                                if(visMuseum != undefined) visMuseum.nVis == undefined ? visMuseum.nVis = 1 : visMuseum.nVis++;
+                            })
+                            this.museumsChartData = this.buildMuseumsChartData(this.museumsRepo);
+                        })
                     })
                 })
             })
             DataProvider("QUIZZES", "QUIZZES").then((res) => {
-                this.totalChartData.totalQuizzes += res.quizzes.length;
+                res.quizzes.forEach((q) => this.quizzesRepo.push(q));
+                this.totalData.totalQuizzes += res.quizzes.length;
             })
         },
-        buildChartData: function(totalsData) {
+        buildTotalChartData: function(totalsData) {
             let newChartData = {
                 xcategories: ["Museus", "Exposicions", "Obres", "Quizzes", "Usuaris"],
                 series: [{
@@ -65,6 +92,21 @@ export default {
                     data: [totalsData.totalMuseums, totalsData.totalExpositions, totalsData.totalPieces, totalsData.totalQuizzes, totalsData.totalUsers]
                 }]
             }
+            return newChartData;
+        },
+        buildMuseumsChartData: function(museumsData) {
+            let newChartData = {
+                xcategories: [],
+                series: [
+                    { name: 'Favs', data: [] },
+                    { name: 'Visitas', data: [] }
+                ]
+            }
+            museumsData.forEach((m) => {
+                newChartData.xcategories.push(m.name);
+                newChartData.series[0].data.push(m.nFavs != undefined ? m.nFavs : 0)
+                newChartData.series[1].data.push(m.nVis != undefined ? m.nVis : 0)
+            })
             return newChartData;
         }
     },
