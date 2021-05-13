@@ -20,6 +20,10 @@ export default {
             xcategories: [],
             series: [],
         },
+        piecesChartData: {
+            xcategories: [],
+            series: [],
+        },
         totalData: {
             totalMuseums: 0,
             totalExpositions: 0,
@@ -61,6 +65,7 @@ export default {
                                 let likedPiece = this.piecesRepo.find(piece => piece._id == p.artworkId);
                                 if(likedPiece != undefined) likedPiece.nLikes == undefined ? likedPiece.nLikes = 1 : likedPiece.nLikes++;
                             })
+                            this.piecesChartData = this.buildPiecesChartData(this.piecesRepo);
                         })
                         DataProvider("USERS", "USER_FAVS", user.username).then((res) => {
                             res.favourites.forEach((m) => {
@@ -106,6 +111,19 @@ export default {
                 newChartData.xcategories.push(m.name);
                 newChartData.series[0].data.push(m.nFavs != undefined ? m.nFavs : 0)
                 newChartData.series[1].data.push(m.nVis != undefined ? m.nVis : 0)
+            })
+            return newChartData;
+        },
+        buildPiecesChartData: function(piecesData) {
+            let newChartData = {
+                xcategories: [],
+                series: [
+                    { name: 'Likes', data: [] },
+                ]
+            }
+            piecesData.forEach((m) => {
+                newChartData.xcategories.push(m.title);
+                newChartData.series[0].data.push(m.nLikes != undefined ? m.nLikes : 0)
             })
             return newChartData;
         }
