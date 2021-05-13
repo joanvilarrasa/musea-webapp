@@ -51,7 +51,11 @@ export default {
                             this.totalData.totalPieces += res.exposition.works.length;
                             this.totalChartData = this.buildTotalChartData(this.totalData);
                             res.exposition.works.forEach(piece => {
-                                this.piecesRepo.push(piece);
+                                let newPiece = JSON.parse(JSON.stringify(piece))
+                                DataProvider("MUSEUMS", "OBRA_COMMENTS", piece._id).then((res) => {
+                                    newPiece.nComments = res.comments.length
+                                });
+                                this.piecesRepo.push(newPiece);
                             });
                         })
                     })
@@ -60,26 +64,25 @@ export default {
                     this.totalData.totalUsers += res.users.length;
                     res.users.forEach((user) => {
                         this.usersRepo.push(user);
-                        DataProvider("USERS", "USER_LIKES", user.username).then((res) => {
-                            res.likes.forEach((p) => {
-                                let likedPiece = this.piecesRepo.find(piece => piece._id == p.artworkId);
+                        DataProvider("USERS", "USER_INFO", user.username).then((res) => {
+                            res.user.likes.forEach((p) => {
+                                let likedPiece = this.piecesRepo.find(piece => piece._id == p);
                                 if(likedPiece != undefined) likedPiece.nLikes == undefined ? likedPiece.nLikes = 1 : likedPiece.nLikes++;
                             })
                             this.piecesChartData = this.buildPiecesChartData(this.piecesRepo);
-                        })
-                        DataProvider("USERS", "USER_FAVS", user.username).then((res) => {
-                            res.favourites.forEach((m) => {
-                                let favMuseum = this.museumsRepo.find(museum => museum._id == m.museumId);
+
+                            res.user.favourites.forEach((m) => {
+                                let favMuseum = this.museumsRepo.find(museum => museum._id == m);
                                 if(favMuseum != undefined) favMuseum.nFavs == undefined ? favMuseum.nFavs = 1 : favMuseum.nFavs++;
                             })
                             this.museumsChartData = this.buildMuseumsChartData(this.museumsRepo);
-                        })
-                        DataProvider("USERS", "USER_VISITED", user.username).then((res) => {
-                            res.visited.forEach((m) => {
-                                let visMuseum = this.museumsRepo.find(museum => museum._id == m.museumId);
+
+                            res.user.visited.forEach((m) => {
+                                let visMuseum = this.museumsRepo.find(museum => museum._id == m);
                                 if(visMuseum != undefined) visMuseum.nVis == undefined ? visMuseum.nVis = 1 : visMuseum.nVis++;
                             })
                             this.museumsChartData = this.buildMuseumsChartData(this.museumsRepo);
+
                         })
                     })
                 })
@@ -119,11 +122,13 @@ export default {
                 xcategories: [],
                 series: [
                     { name: 'Likes', data: [] },
+                    { name: 'Comments', data: [] },
                 ]
             }
-            piecesData.forEach((m) => {
-                newChartData.xcategories.push(m.title);
-                newChartData.series[0].data.push(m.nLikes != undefined ? m.nLikes : 0)
+            piecesData.forEach((p) => {
+                newChartData.xcategories.push(p.title);
+                newChartData.series[0].data.push(p.nLikes != undefined ? p.nLikes : 0)
+                newChartData.series[1].data.push(p.nComments != undefined ? p.nComments : 0)
             })
             return newChartData;
         }
