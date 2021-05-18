@@ -1,13 +1,19 @@
 
 <div class="view-container">
   <div class="chart-container">
-    <AppBarChart :chartData="totalChartData"></AppBarChart>
+    <h2>Número de Entidades de la App</h2>
+    <AppSpiderChart :chartData="totalChartData"></AppSpiderChart>
   </div>
   <div class="chart-container">
+    <h2>Museos</h2>
     <AppBarChart :chartData="museumsChartData"></AppBarChart>
   </div>
-  <div class="chart-container"></div>
   <div class="chart-container">
+    <h2>Usuarios</h2>
+    <AppBarChart :chartData="usersChartData"></AppBarChart>
+  </div>
+  <div class="chart-container">
+    <h2>Obras</h2>
     <AppBarChart :chartData="piecesChartData"></AppBarChart>
   </div>
 </div>

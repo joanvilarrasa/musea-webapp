@@ -18,9 +18,7 @@ export const UsersDataProvider = (type,params,urlAPIMuseums) => {
                 method: 'GET',
                 url: uri,
             }
-            console.log(uri)
             return axios(options).then((res) => {
-                console.log(res)
                 return res.data});
 
         case "USER_DELETE":
