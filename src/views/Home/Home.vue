@@ -5,11 +5,13 @@ import { DataProvider } from '@/data-providers/_Index.js';
 
 // Components
 import AppBarChart from '@/components/AppBarChart/AppBarChart.vue';
+import AppSpiderChart from '@/components/AppSpiderChart/AppSpiderChart.vue';
 
 export default {
     name: 'Home',
     components: {
       AppBarChart,
+      AppSpiderChart,
     },
     data: () => ({
         totalChartData: {
@@ -21,6 +23,10 @@ export default {
             series: [],
         },
         piecesChartData: {
+            xcategories: [],
+            series: [],
+        },
+        usersChartData: {
             xcategories: [],
             series: [],
         },
@@ -63,8 +69,8 @@ export default {
                 DataProvider("USERS", "USERS").then((res) => {
                     this.totalData.totalUsers += res.users.length;
                     res.users.forEach((user) => {
-                        this.usersRepo.push(user);
                         DataProvider("USERS", "USER_INFO", user.username).then((res) => {
+                            this.usersRepo.push(res.user);
                             res.user.likes.forEach((p) => {
                                 let likedPiece = this.piecesRepo.find(piece => piece._id == p);
                                 if(likedPiece != undefined) likedPiece.nLikes == undefined ? likedPiece.nLikes = 1 : likedPiece.nLikes++;
@@ -82,7 +88,7 @@ export default {
                                 if(visMuseum != undefined) visMuseum.nVis == undefined ? visMuseum.nVis = 1 : visMuseum.nVis++;
                             })
                             this.museumsChartData = this.buildMuseumsChartData(this.museumsRepo);
-
+                            this.usersChartData = this.buildUsersChartData(this.usersRepo);
                         })
                     })
                 })
@@ -130,6 +136,29 @@ export default {
                 newChartData.series[0].data.push(p.nLikes != undefined ? p.nLikes : 0)
                 newChartData.series[1].data.push(p.nComments != undefined ? p.nComments : 0)
             })
+            return newChartData;
+        },
+        buildUsersChartData: function(usersData) {
+            let newChartData = {
+                xcategories: [],
+                series: [
+                    { name: 'Points', data: [] },
+                    { name: 'Likes', data: [] },
+                    { name: 'Favs', data: [] },
+                    { name: 'Visited', data: [] },
+                ]
+            }
+            let sortedUsersArray = usersData.sort(function (a, b) {
+                return a.points > b.points;
+            });
+            for(let i=0; i<10; i++) {
+                newChartData.xcategories.push(sortedUsersArray[i].userId);
+                newChartData.series[0].data.push(sortedUsersArray[i].points != undefined ? sortedUsersArray[i].points : 0)
+                newChartData.series[1].data.push(sortedUsersArray[i].likes.length != undefined ? sortedUsersArray[i].likes.length : 0)
+                newChartData.series[2].data.push(sortedUsersArray[i].favourites.length != undefined ? sortedUsersArray[i].favourites.length : 0)
+                newChartData.series[3].data.push(sortedUsersArray[i].visited.length != undefined ? sortedUsersArray[i].visited.length : 0)
+
+            }
             return newChartData;
         }
     },
