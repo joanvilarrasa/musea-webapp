@@ -65,6 +65,7 @@
         <input type="file" accept="image/*" id="img" v-on:input="previewFile($event)" >
       </div>
     </div>
+     <button class="submit">Editar Obra</button>
     </form>
   </div>
 
