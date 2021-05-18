@@ -1,8 +1,7 @@
 <template>
     <div class="view-container">
         <div class="table-container">
-            <v-simple-table fixed-header light
-            class="elevation-1">
+            <v-simple-table fixed-header light>
                 
                 <table>
                     <thead>
@@ -75,19 +74,21 @@ export default {
 
 </script>
 
-<style scoped>
+<style >
 table {
-   overflow: visible;
-  width: 100%;
-  border: 20px solid white;
+    overflow: visible;
+    width: 100%;
+    background-color:rgb(206, 216, 253);
   
 }
 td {
-    width: 20%;
+    width: 15%;
+    border-top: 1px solid rgb(10, 10, 10);
+    background-color:rgb(206, 216, 253);
 }
 th {
-  border: 1px solid white;
-  height: 15px;
+  height: 20px;
+  background-color:rgb(206, 216, 253);
 }
 .submit {
   background-color:rgb(106, 118, 171);

@@ -16,7 +16,7 @@
                             <td> <router-link :to="{ name: 'InfoUser', params: { userId: user.username }}"> {{user.username}}</router-link> </td>
                             <td> {{user.fullName}} </td>
                             <td> {{user.premium}} </td>
-                            <td> <button class="delete" v-on:click="esborrarUser(user.username)">  <router-link :to="{ name: 'Usuaris'}"><v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/></router-link></button><button class="delete"> <router-link :to="{ name: 'InfoUser', params: { userId: user.username }}"> <v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </router-link></button> </td>
+                            <td> <button class="delete" v-on:click="esborrarUser(user.username)">  <router-link :to="{ name: 'Usuaris'}"><v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/></router-link></button><button class="delete"> <router-link :to="{ name: 'InfoUser', params: { userId: user.username }}"> <v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </router-link></button> <button><v-img :src="require('../assets/block.png')" width ="25px" height="25px"/> </button> </td>
                         </tr>
                     </tbody>  
                 </table>
@@ -57,17 +57,3 @@ export default {
 
 </script>
 
-<style scoped>
-table {
-  width: 100%;
-  border: 1px solid white;
-}
-td {
-    width: 20%;
-}
-th {
-  border: 1px solid white;
-  height: 15px;
-}
-
-</style>

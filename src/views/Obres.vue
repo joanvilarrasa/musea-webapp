@@ -67,7 +67,6 @@ export default {
 
         },
         
-
     },
     mounted() {
         
@@ -77,27 +76,3 @@ export default {
 
 </script>
 
-<style scoped>
-table {
-   
-  width: 100%;
-
-  border: 1px solid white;
-}
-td {
-    width: 20%;
-}
-th {
-  border: 1px solid white;
-  height: 15px;
-}
-.delete {
-  background-color: #bdbdbd;
-  color: black;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  float: center;
-}
-</style>

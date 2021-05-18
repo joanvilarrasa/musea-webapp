@@ -19,6 +19,7 @@ import InfoUser from '../views/InfoUser.vue'
 import Quizzes from '../views/Quizzes.vue'
 import AddQuizz from '../views/AddQuizz.vue'
 import EditQuizz from '../views/EditQuizz.vue'
+import Help from '../views/Help.vue'
 Vue.use(VueRouter)
 
 const ifAuthenticated = (to, from, next) => {
@@ -37,6 +38,12 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+    beforeEnter: ifAuthenticated,
+  },
+  {
+    path: '/help',
+    name: 'Help',
+    component: Help,
     beforeEnter: ifAuthenticated,
   },
   {
