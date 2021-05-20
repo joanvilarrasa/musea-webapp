@@ -56,6 +56,7 @@ export default {
         obtenir_users: function(){
             let aux = []
             let date = new Date()
+            date.setTime(date.getTime() + ( 60 * 1000))
             DataProvider("USERS", "USERS", {}).then((res) => {
                 aux = res.users;
                 this.users = [];
@@ -67,7 +68,6 @@ export default {
                        }
                        this.users.push(res.user)
                     })
-
                 }
             })
         },
@@ -94,7 +94,7 @@ export default {
 
 <style scoped>
 .banned{
-    background-color:grey
+    background-color:rgb(175, 175, 175)
     }
 
 

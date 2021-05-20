@@ -76,6 +76,7 @@ export default {
 
 <style >
 table {
+
     overflow: visible;
     width: 100%;
     background-color:rgb(206, 216, 253);
