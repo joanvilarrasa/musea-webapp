@@ -14,7 +14,7 @@
         <v-spacer></v-spacer>
         <button>
           <router-link :to="{ name: 'Help'}">
-          <v-img  :src="require('./assets/question.png')" width="20px" height="20px"/>
+          <v-img  :src="require('./assets/help-xxl.png')" width="20px" height="20px"/>
           </router-link>
         </button> 
         <v-btn icon @click="logoutFunction">

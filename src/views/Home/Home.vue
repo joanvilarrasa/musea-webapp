@@ -69,7 +69,7 @@ export default {
                 DataProvider("USERS", "USERS").then((res) => {
                     this.totalData.totalUsers += res.users.length;
                     res.users.forEach((user) => {
-                        DataProvider("USERS", "USER_INFO", user.username).then((res) => {
+                        DataProvider("USERS", "USER_INFO", user.email).then((res) => {
                             this.usersRepo.push(res.user);
                             res.user.likes.forEach((p) => {
                                 let likedPiece = this.piecesRepo.find(piece => piece._id == p);
