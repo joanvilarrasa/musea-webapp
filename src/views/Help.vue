@@ -13,7 +13,7 @@
         En aquesta pantalla es poden consultar les estadísitiques sobre l'aplicació.
     </p>
     <br>
-    <router-link :to="{ name: 'Users'}">
+    <router-link :to="{ name: 'Usuaris'}">
     <h2>
         Users
     </h2>
@@ -39,7 +39,7 @@
     </router-link>
     <p>
         En aquesta vista es pot consultar els museus que hi ha, per cada museu al clickar al seu nom es poden veure les exposicions que conté.    <br>
-        També es pot afegir un museu nou o editar-ne o esborrar-ne un d'existent.
+        També es pot afegir un museu nou o editar-ne i esborrar-ne un d'existent.
     </p>
     <div class="block">
         <table>

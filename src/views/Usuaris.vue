@@ -69,6 +69,7 @@ export default {
                        this.users.push(res.user)
                     })
                 }
+
             })
         },
          banejarUser:  function(id_user){
