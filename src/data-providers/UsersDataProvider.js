@@ -31,6 +31,28 @@ export const UsersDataProvider = (type,params,urlAPIMuseums) => {
             }
             return axios(options2).then((res) => {return res.data});
         
+        case "MAKE_PREMIUM":
+            var uri2 = urlAPIMuseums + '/users/'+ params + '/premium';
+            console.log(uri2)
+            let par = {days: 365};
+            var options2 = {
+                method: 'PUT',
+                url: uri2,
+                params: par,
+            }
+            return axios(options2).then((res) => {return res.data});
+
+        case "REMOVE_PREMIUM":
+            var uri2 = urlAPIMuseums + '/users/'+ params + '/premium';
+            console.log(uri2)
+            let par2 = {days: -365};
+            var options2 = {
+                method: 'PUT',
+                url: uri2,
+                params: par2,
+            }
+            return axios(options2).then((res) => {return res.data});
+        
         case "USER_BAN":
             var uri2= urlAPIMuseums + '/users/'+ params +'/ban';
             console.log(uri2)

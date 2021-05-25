@@ -15,13 +15,15 @@
                     </thead>
                     <tbody>
                         <template v-for="user in this.users"  >
-                        <tr v-if="user.banDate == null"   v-bind:key="user.userId">
+                        <tr v-if="user.banDate == null" v-bind:key="user.userId">
                             <td> <router-link :to="{ name: 'InfoUser', params: { userId: user.email }}"> {{user.userId}}</router-link> </td>
                             <td> {{user.name}} </td>
                             <td> {{user.premium}} </td>
                             <td> {{user.likes.length}} </td>
                             <td> {{user.favourites.length}} </td>
-                            <td><button class="delete"> <router-link :to="{ name: 'InfoUser', params: { userId: user.email }}"> <v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </router-link></button> <button @click="banejarUser(user.userId)"><v-img :src="require('../assets/block.png')" width ="25px" height="25px"/> </button> </td>
+                            <td><button class="delete"> <router-link :to="{ name: 'InfoUser', params: { userId: user.email }}"> <v-img :src="require('../assets/edit.png')"   width ="25px" height="25px"/> </router-link></button> <button @click="banejarUser(user.userId)"><v-img :src="require('../assets/block.png')" width ="25px" height="25px"/> </button> 
+                                <button v-if="!user.premium" @click="MakePremium(user.userId)"><v-img :src="require('../assets/star4.png')" width ="25px" height="25px"/> </button> 
+                                <button v-if="user.premium" @click="RemovePremium(user.userId)"><v-img :src="require('../assets/lock-premium.png')" width ="25px" height="25px"/> </button> </td>
                         </tr>
                         <tr v-else  class="banned" v-bind:key="user.userId">
                             <td class="banned"> <router-link :to="{ name: 'InfoUser', params: { userId: user.email }}"> {{user.userId}}</router-link> </td>
@@ -29,9 +31,8 @@
                             <td class="banned"> {{user.premium}} </td>
                             <td class="banned"> {{user.likes.length}} </td>
                             <td class="banned"> {{user.favourites.length}} </td>
-                            <td class="banned"> <button class="delete"> <router-link :to="{ name: 'InfoUser', params: { userId: user.email }}"> <v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </router-link></button> <button @click="DesbanejarUser(user.userId)"><v-img :src="require('../assets/tick-icon.png')" width ="25px" height="25px"/> </button> </td>
+                            <td class="banned"> <button class="delete"> <router-link :to="{ name: 'InfoUser', params: { userId: user.email }}"> <v-img :src="require('../assets/edit.png')"    width ="25px" height="25px"/> </router-link></button> <button @click="DesbanejarUser(user.userId)"><v-img :src="require('../assets/tick-icon.png')" width ="25px" height="25px"/> </button>  </td>
                         </tr>
-
                         </template>
 
                     </tbody>  
@@ -63,14 +64,34 @@ export default {
                 for(let i in aux){
                     DataProvider("USERS", "USER_INFO", aux[i].email).then((res) => {
                        let banDate = new Date(res.user.banDate)
+                       let premDate = new Date(res.user.premiumDate)
                        if (banDate<=date){
                            res.user.banDate=null;
+                       }
+                       if(premDate<=date){
+                           res.user.premium=false;
+                       }
+                       else{
+                           res.user.premium=Math.round(Math.abs((premDate-date)/(24 * 60 * 60 * 1000))).toString() + " days left";
+                           console.log(res.user.premium)
                        }
                        this.users.push(res.user)
                     })
                 }
 
             })
+        },
+        MakePremium: function(id_user){
+            DataProvider("USERS", "MAKE_PREMIUM", id_user).then((res) => {
+                console.log(res)
+            })
+             this.obtenir_users();
+        },
+        RemovePremium: function(id_user){
+            DataProvider("USERS", "REMOVE_PREMIUM", id_user).then((res) => {
+                console.log(res)
+            })
+             this.obtenir_users();
         },
          banejarUser:  function(id_user){
             DataProvider("USERS", "USER_BAN", id_user).then((res) => {

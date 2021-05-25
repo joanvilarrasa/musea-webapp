@@ -24,10 +24,11 @@
     </p>
     <div class="block">
         <table>
-            <tr><td><v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </td><td>  <p> Icona per editar usuari </p></td></tr>
+            <tr><td><v-img :src="require('../assets/edit.png')"   width ="25px" height="25px"/> </td><td>  <p> Icona per editar usuari </p></td></tr>
             <tr><td><v-img :src="require('../assets/block.png')"   width ="25px" height="25px"/> </td><td>  <p> Icona per bannejar usuari</p></td></tr>
             <tr><td><v-img :src="require('../assets/tick-icon.png')"   width ="25px" height="25px"/> </td><td>  <p> Icona per desbannejar usuari </p></td></tr>
-            
+            <tr><td><v-img :src="require('../assets/star4.png')"   width ="25px" height="25px"/> </td><td>  <p> Icona per convertir usuari a premium </p></td></tr>
+            <tr><td><v-img :src="require('../assets/lock-premium.png')"   width ="25px" height="25px"/> </td><td>  <p> Icona per convertir usuari premium a usuari normal </p></td></tr>
             </table>
     
     </div>
@@ -44,7 +45,7 @@
     <div class="block">
         <table>
             <tr><td><v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/> </td><td>  <p> Icona per eliminar un museu</p></td></tr>
-            <tr><td><v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </td><td>  <p> Icona per editar museu </p></td></tr>
+            <tr><td><v-img :src="require('../assets/edit.png')"   width ="25px" height="25px"/> </td><td>  <p> Icona per editar museu </p></td></tr>
         </table>
     
     </div>
@@ -60,7 +61,7 @@
     <div class="block">
         <table>
             <tr><td><v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/> </td><td>  <p> Icona per eliminar un quizz</p></td></tr>
-            <tr><td><v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </td><td>  <p> Icona per editar un quizz </p></td></tr>      
+            <tr><td><v-img :src="require('../assets/edit.png')"   width ="25px" height="25px"/> </td><td>  <p> Icona per editar un quizz </p></td></tr>      
         </table>
     
     </div>
@@ -73,12 +74,14 @@
     text-align: left;
     padding: 25px;
     background-color:rgb(206, 216, 253);
+     overflow: scroll;
 
 }
 .block{
-    padding: 15px;
+    padding: 3px;
 }
 td {
+    padding: 1px;
     border-top: none;
     text-align: center;
 

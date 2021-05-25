@@ -82,7 +82,7 @@
       <div class="col-25">
         <label for="lname">Points:</label>
       </div>
-       <div class="col-75">
+       <div class="col-25">
         <input type="text" id="points" name="points" placeholder="Punts de la pregunta.." v-model="form.points">
       </div>
       
