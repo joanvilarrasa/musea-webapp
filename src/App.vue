@@ -12,6 +12,11 @@
           </v-tabs>
         </template>
         <v-spacer></v-spacer>
+        <button>
+          <router-link :to="{ name: 'Help'}">
+          <v-img  :src="require('./assets/help-xxl.png')" width="20px" height="20px"/>
+          </router-link>
+        </button> 
         <v-btn icon @click="logoutFunction">
           <v-icon>mdi-logout</v-icon>
         </v-btn>
@@ -25,6 +30,7 @@
 
 <style lang="scss">
 #app {
+  
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -48,6 +54,8 @@
 }
 
 .view-container {
+  background-color:rgb(206, 216, 253);
+
   height: 100%;
   width: 100%;
   display: flex;

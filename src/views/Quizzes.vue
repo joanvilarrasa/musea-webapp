@@ -70,27 +70,3 @@ export default {
 
 </script>
 
-<style>
-table {
-   overflow: visible;
-  width: 100%;
-  border: 20px solid white;
-  
-}
-td {
-    width: 20%;
-}
-th {
-  border: 1px solid white;
-  height: 5px;
-}
-.submit {
-  background-color:rgb(106, 118, 171);
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  float: left;
-}
-</style>

@@ -8,16 +8,33 @@
                             <th> Username </th>
                             <th>Nom usuari</th>
                             <th> Premium </th>
+                            <th> Likes </th>
+                            <th> Favorites </th>
                             <th> Manage </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="user in this.users" :key="user.username">
-                            <td> <router-link :to="{ name: 'InfoUser', params: { userId: user.username }}"> {{user.username}}</router-link> </td>
-                            <td> {{user.fullName}} </td>
+                        <template v-for="user in this.users"  >
+                        <tr v-if="user.banDate == null" v-bind:key="user.userId">
+                            <td> <router-link :to="{ name: 'InfoUser', params: { userId: user.email }}"> {{user.userId}}</router-link> </td>
+                            <td> {{user.name}} </td>
                             <td> {{user.premium}} </td>
-                            <td> <button class="delete" v-on:click="esborrarUser(user.username)">  <router-link :to="{ name: 'Usuaris'}"><v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/></router-link></button><button class="delete"> <router-link :to="{ name: 'InfoUser', params: { userId: user.username }}"> <v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </router-link></button> </td>
+                            <td> {{user.likes.length}} </td>
+                            <td> {{user.favourites.length}} </td>
+                            <td><button class="delete"> <router-link :to="{ name: 'InfoUser', params: { userId: user.email }}"> <v-img :src="require('../assets/edit.png')"   width ="25px" height="25px"/> </router-link></button> <button @click="banejarUser(user.userId)"><v-img :src="require('../assets/block.png')" width ="25px" height="25px"/> </button> 
+                                <button v-if="!user.premium" @click="MakePremium(user.userId)"><v-img :src="require('../assets/star4.png')" width ="25px" height="25px"/> </button> 
+                                <button v-if="user.premium" @click="RemovePremium(user.userId)"><v-img :src="require('../assets/lock-premium.png')" width ="25px" height="25px"/> </button> </td>
                         </tr>
+                        <tr v-else  class="banned" v-bind:key="user.userId">
+                            <td class="banned"> <router-link :to="{ name: 'InfoUser', params: { userId: user.email }}"> {{user.userId}}</router-link> </td>
+                            <td class="banned"> {{user.name}} </td>
+                            <td class="banned"> {{user.premium}} </td>
+                            <td class="banned"> {{user.likes.length}} </td>
+                            <td class="banned"> {{user.favourites.length}} </td>
+                            <td class="banned"> <button class="delete"> <router-link :to="{ name: 'InfoUser', params: { userId: user.email }}"> <v-img :src="require('../assets/edit.png')"    width ="25px" height="25px"/> </router-link></button> <button @click="DesbanejarUser(user.userId)"><v-img :src="require('../assets/tick-icon.png')" width ="25px" height="25px"/> </button>  </td>
+                        </tr>
+                        </template>
+
                     </tbody>  
                 </table>
             </v-simple-table>     
@@ -38,17 +55,57 @@ export default {
     },
     methods: {
         obtenir_users: function(){
+            let aux = []
+            let date = new Date()
+            date.setTime(date.getTime() + ( 60 * 1000))
             DataProvider("USERS", "USERS", {}).then((res) => {
-                this.users = res.users;
-            })
+                aux = res.users;
+                this.users = [];
+                for(let i in aux){
+                    DataProvider("USERS", "USER_INFO", aux[i].email).then((res) => {
+                       let banDate = new Date(res.user.banDate)
+                       let premDate = new Date(res.user.premiumDate)
+                       if (banDate<=date){
+                           res.user.banDate=null;
+                       }
+                       if(premDate<=date){
+                           res.user.premium=false;
+                       }
+                       else{
+                           res.user.premium=Math.round(Math.abs((premDate-date)/(24 * 60 * 60 * 1000))).toString() + " days left";
+                           console.log(res.user.premium)
+                       }
+                       this.users.push(res.user)
+                    })
+                }
 
+            })
         },
-         esborrarUser:  function(id_user){
-            DataProvider("USERS", "USER_DELETE", id_user).then((res) => {
+        MakePremium: function(id_user){
+            DataProvider("USERS", "MAKE_PREMIUM", id_user).then((res) => {
                 console.log(res)
             })
              this.obtenir_users();
-        }
+        },
+        RemovePremium: function(id_user){
+            DataProvider("USERS", "REMOVE_PREMIUM", id_user).then((res) => {
+                console.log(res)
+            })
+             this.obtenir_users();
+        },
+         banejarUser:  function(id_user){
+            DataProvider("USERS", "USER_BAN", id_user).then((res) => {
+                console.log(res)
+            })
+             this.obtenir_users();
+        },
+        DesbanejarUser:  function(id_user){
+            DataProvider("USERS", "USER_UNBAN", id_user).then((res) => {
+                console.log(res)
+            })
+            this.obtenir_users();
+        },
+
     },
     mounted() {
         this.obtenir_users();
@@ -58,16 +115,9 @@ export default {
 </script>
 
 <style scoped>
-table {
-  width: 100%;
-  border: 1px solid white;
-}
-td {
-    width: 20%;
-}
-th {
-  border: 1px solid white;
-  height: 15px;
-}
+.banned{
+    background-color:rgb(175, 175, 175)
+    }
+
 
 </style>

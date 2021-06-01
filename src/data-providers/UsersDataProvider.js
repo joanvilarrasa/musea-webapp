@@ -18,9 +18,7 @@ export const UsersDataProvider = (type,params,urlAPIMuseums) => {
                 method: 'GET',
                 url: uri,
             }
-            console.log(uri)
             return axios(options).then((res) => {
-                console.log(res)
                 return res.data});
 
         case "USER_DELETE":
@@ -30,6 +28,46 @@ export const UsersDataProvider = (type,params,urlAPIMuseums) => {
                 method: 'DELETE',
                 url: uri2,
                
+            }
+            return axios(options2).then((res) => {return res.data});
+        
+        case "MAKE_PREMIUM":
+            var uri2 = urlAPIMuseums + '/users/'+ params + '/premium';
+            console.log(uri2)
+            let par = {days: 365};
+            var options2 = {
+                method: 'PUT',
+                url: uri2,
+                params: par,
+            }
+            return axios(options2).then((res) => {return res.data});
+
+        case "REMOVE_PREMIUM":
+            var uri2 = urlAPIMuseums + '/users/'+ params + '/premium';
+            console.log(uri2)
+            let par2 = {days: -365};
+            var options2 = {
+                method: 'PUT',
+                url: uri2,
+                params: par2,
+            }
+            return axios(options2).then((res) => {return res.data});
+        
+        case "USER_BAN":
+            var uri2= urlAPIMuseums + '/users/'+ params +'/ban';
+            console.log(uri2)
+            var options2 = {
+                method: 'POST',
+                url: uri2,
+            }
+            return axios(options2).then((res) => {return res.data});
+
+        case "USER_UNBAN":
+            var uri2= urlAPIMuseums + '/users/'+ params +'/unban';
+            console.log(uri2)
+            var options2 = {
+                method: 'POST',
+                url: uri2,
             }
             return axios(options2).then((res) => {return res.data});
 

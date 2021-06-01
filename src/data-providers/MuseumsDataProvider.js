@@ -134,6 +134,14 @@ export const MuseumsDataProvider = (type,params,urlAPIMuseums) => {
             }
             console.log(uri2)
             return axios(options2).then((res) => {return res.data});
+        
+        case "OBRA_COMMENTS":
+            var uri2 = urlAPIMuseums + '/comments?artworkId='+params;
+            var options2 = {
+                method: 'GET',
+                url: uri2,
+            }
+            return axios(options2).then((res) => {return res.data});
 
         default:
             console.log(params);

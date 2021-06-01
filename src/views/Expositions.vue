@@ -18,7 +18,7 @@
                             <td> {{expo.works.length}} </td>
                             <td> {{expo.room}} </td>
                             <td><v-img lazy-src="" max-height="100" max-width="200" :src="expo.image"></v-img></td>
-                            <td> <button class="delete" @click="esborrarExpo(expo._id)"> <v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/> </button> <button class="delete"> <router-link :to="{ name: 'ExpoEdit', params: { id_exposition: expo._id, expo_nom: expo.name}}"> <v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </router-link></button></td>
+                            <td> <button class="delete" @click="esborrarExpo(expo._id)"> <v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/> </button> <button class="delete"> <router-link :to="{ name: 'ExpoEdit', params: { id_exposition: expo._id, expo_nom: expo.name}}"> <v-img :src="require('../assets/edit.png')"   width ="25px" height="25px"/> </router-link></button></td>
                         </tr>
                     </tbody>  
                 </table>
@@ -74,25 +74,3 @@ export default {
 
 </script>
 
-<style scoped>
-table {
-  width: 100%;
-  border: 1px solid white;
-}
-td {
-    width: 20%;
-}
-th {
-  border: 1px solid white;
-  height: 15px;
-}
-.submit {
-  background-color: rgb(106, 118, 171);
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  float: left;
-}
-</style>

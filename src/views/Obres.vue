@@ -20,7 +20,7 @@
                             <td> {{obra.type}} </td>
                             <td> {{obra.score}} </td>
                             <td><v-img lazy-src="" max-height="100" max-width="200" :src="obra.image"></v-img></td>
-                            <td> <button class="delete" v-on:click="esborrarObra(obra._id)"> <v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/></button> <button class="delete"> <router-link :to="{ name: 'ObraEdit', params: { id_obra: obra._id, obra_titol: obra.title, obra_autor: obra.author, obra_tipus: obra.type}}"> <v-img :src="require('../assets/images.png')"   width ="25px" height="25px"/> </router-link></button> </td>
+                            <td> <button class="delete" v-on:click="esborrarObra(obra._id)"> <v-img :src="require('../assets/delete-icon.png')"   width ="25px" height="25px"/></button> <button class="delete"> <router-link :to="{ name: 'ObraEdit', params: { id_obra: obra._id, obra_titol: obra.title, obra_autor: obra.author, obra_tipus: obra.type}}"> <v-img :src="require('../assets/edit.png')"   width ="25px" height="25px"/> </router-link></button> </td>
                         </tr>
                     </tbody>  
                 </table>
@@ -67,7 +67,6 @@ export default {
 
         },
         
-
     },
     mounted() {
         
@@ -77,27 +76,3 @@ export default {
 
 </script>
 
-<style scoped>
-table {
-   
-  width: 100%;
-
-  border: 1px solid white;
-}
-td {
-    width: 20%;
-}
-th {
-  border: 1px solid white;
-  height: 15px;
-}
-.delete {
-  background-color: #bdbdbd;
-  color: black;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  float: center;
-}
-</style>

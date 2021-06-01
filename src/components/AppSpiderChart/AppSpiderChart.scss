@@ -1,0 +1,16 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.login-card-container{
+    max-width: 50%;
+}
+
+.login-form-title {
+    font-size: large;
+    margin-bottom: 1rem;
+}

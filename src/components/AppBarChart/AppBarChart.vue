@@ -17,6 +17,17 @@ export default {
           id: 'basic-bar'
         },
         xaxis: {
+          labels: {
+            rotateAlways: false, 
+            rotate: -45, 
+            style: {
+              colors: [],
+              fontSize: '10px',
+              fontFamily: 'Helvetica, Arial, sans-serif',
+              fontWeight: 400,
+              cssClass: 'apexcharts-xaxis-label',
+            },
+          },
           categories: []
         }
       },

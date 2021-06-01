@@ -131,7 +131,7 @@ export default {
               fileName: this.image_aux.name,
               file: this.image_aux             
             }
-            uploader.uploadImage(data, "/museums ").then((res)=>{
+            uploader.uploadImage(data, "/museums").then((res)=>{
               this.form.image=res.Location
               console.log(this.form.image) 
               let params = [ this.form, this.$route.params.id_museu]
